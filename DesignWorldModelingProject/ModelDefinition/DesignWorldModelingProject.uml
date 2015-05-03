@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="649d146c-3fe5-421f-8795-2ce0ad0f0b10"
+  name="DesignWorldModelingProject" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="140798c0-09a9-48b3-ba3d-e381daa6ab74"
+        name="Object"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="1192ce4d-a43e-4f0f-8a16-e43536c5ff6f"
+            isSubstitutable="false">
+            <classMoniker
+              Id="23bf2f60-afb4-4e8a-97c7-07e28c2528cc"
+              LastKnownName="LIne"
+              LastKnownLocation="DesignWorldModelingProject.uml" />
+          </generalization>
+          <generalization
+            Id="a8defbce-b2e2-4a07-aa14-c731e39f765d"
+            isSubstitutable="false">
+            <classMoniker
+              Id="4b94fd15-a9d7-4b27-a8a4-da6c237f951f"
+              LastKnownName="Point"
+              LastKnownLocation="DesignWorldModelingProject.uml" />
+          </generalization>
+          <generalization
+            Id="d5566e41-f7b6-4afe-aefc-5ee7138dd2b8"
+            isSubstitutable="false">
+            <classMoniker
+              Id="0f419a2b-0f66-4b59-96ab-7936cd28bdf9"
+              LastKnownName="Circle"
+              LastKnownLocation="DesignWorldModelingProject.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="23bf2f60-afb4-4e8a-97c7-07e28c2528cc"
+        name="LIne"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="4b94fd15-a9d7-4b27-a8a4-da6c237f951f"
+        name="Point"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="0f419a2b-0f66-4b59-96ab-7936cd28bdf9"
+        name="Circle"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="f90dd9c7-6cb9-4c7f-b5a7-0944eb30dae0"
+        name="ObjectManager"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>

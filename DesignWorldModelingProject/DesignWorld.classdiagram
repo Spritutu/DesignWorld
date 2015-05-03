@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="9795dbbb-7ebc-4948-bdff-069396d46d7e" name="DesignWorld" linkedPackageId="a56d2130-8926-485e-a465-8bcdb1a0f696" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="8ef1c38a-a713-4baa-8d55-f4d16615ac1e">
+      <profileInstance Id="ef5f1589-5f17-41d0-8ed1-643844cc8e0c" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="b770c62f-5fe6-4b75-844d-009843aa463a">
+      <profileInstance Id="49057624-78d4-4d55-b174-9a54eec24944" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="d642d359-bdec-494d-a7d8-a057e3a574d6" name="Object" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="140798c0-09a9-48b3-ba3d-e381daa6ab74" />
+        <generalsInternal>
+          <generalization Id="78d09a65-7954-48f4-aa32-904660c77a41" isSubstitutable="false">
+            <classMoniker Id="14507f69-ddf1-44df-9f74-68f3cfb1be09" LastKnownName="LIne" />
+            <elementDefinition Id="1192ce4d-a43e-4f0f-8a16-e43536c5ff6f" />
+          </generalization>
+          <generalization Id="2633e0d1-25e5-44f4-853d-e26c250bb0aa" isSubstitutable="false">
+            <classMoniker Id="04ccbaea-cdda-4fb9-aa05-9c33c5d6d74d" LastKnownName="Point" />
+            <elementDefinition Id="a8defbce-b2e2-4a07-aa14-c731e39f765d" />
+          </generalization>
+          <generalization Id="4d0eed1a-28bc-4306-abea-8e646063c17a" isSubstitutable="false">
+            <classMoniker Id="d64e2b86-b8a8-412b-a4de-71db89d80e3f" LastKnownName="Circle" />
+            <elementDefinition Id="d5566e41-f7b6-4afe-aefc-5ee7138dd2b8" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="14507f69-ddf1-44df-9f74-68f3cfb1be09" name="LIne" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="23bf2f60-afb4-4e8a-97c7-07e28c2528cc" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="04ccbaea-cdda-4fb9-aa05-9c33c5d6d74d" name="Point" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="4b94fd15-a9d7-4b27-a8a4-da6c237f951f" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="d64e2b86-b8a8-412b-a4de-71db89d80e3f" name="Circle" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="0f419a2b-0f66-4b59-96ab-7936cd28bdf9" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="dac58397-6b6e-4b59-afec-7adcb9738b45" name="ObjectManager" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f90dd9c7-6cb9-4c7f-b5a7-0944eb30dae0" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="a56d2130-8926-485e-a465-8bcdb1a0f696" name="DesignWorldModelingProject">
+    <elementDefinition Id="649d146c-3fe5-421f-8795-2ce0ad0f0b10" />
+  </package>
+</logicalClassDesignerModel>
