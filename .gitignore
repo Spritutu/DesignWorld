@@ -44,6 +44,7 @@ Temporary Items
 
 # Visual studio files
 *.sdf
+*.suo
 
 # backup files
 *.bak
