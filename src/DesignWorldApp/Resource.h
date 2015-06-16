@@ -85,6 +85,11 @@
 #define IDS_EXPLORER				305
 #define IDS_EDIT_MENU				306
 
+#define IDR_VEIWOPERATION           500
+#define ID_VIEW_PAN                 501
+#define ID_VIEW_FIT                 502
+#define ID_VIEW_FRONT               503
+
 // Next default values for new objects
 //
 #ifdef APSTUDIO_INVOKED

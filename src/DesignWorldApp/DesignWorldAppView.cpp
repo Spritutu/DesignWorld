@@ -32,6 +32,9 @@ BEGIN_MESSAGE_MAP(CDesignWorldAppView, CView)
     ON_WM_CREATE()
     ON_WM_DESTROY()
     ON_WM_SIZE()
+    ON_COMMAND(ID_VIEW_FRONT, &CDesignWorldAppView::OnViewFront)
+    ON_COMMAND(ID_VIEW_FIT, &CDesignWorldAppView::OnViewFit)
+    ON_COMMAND(ID_VIEW_PAN, &CDesignWorldAppView::OnViewPan)
 END_MESSAGE_MAP()
 
 // CDesignWorldAppView construction/destruction
@@ -248,4 +251,27 @@ void CDesignWorldAppView::OnSize(UINT nType, int cx, int cy)
 
 	//Creating Global volume(World Coordinate system)
 	m_pGLManager->SetViewVolume();
+}
+
+void CDesignWorldAppView::OnViewFront()
+{
+    m_pGLManager->FrontView();
+
+    Invalidate(FALSE);
+}
+
+void CDesignWorldAppView::OnViewFit()
+{
+
+    //SetBsplineFit(); //Fits the bspline in doc
+    m_pGLManager->SetViewVolume();
+
+    Invalidate(FALSE);
+}
+
+void CDesignWorldAppView::OnViewPan()
+{
+    //m_currentOperation = Pan;
+
+    Invalidate(FALSE);
 }

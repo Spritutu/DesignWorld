@@ -178,6 +178,163 @@ void GLManager::SetViewVolume()
         sphereSize, -sphereSize);
 }
 
+void GLManager::SetBsplineFit() {}
+//
+//{
+//    CGLSampleDoc* pDoc = GetDocument();
+//
+//    int count = pDoc->GetBSplineCount();
+//
+//    if (!count)
+//        return;
+//
+//
+//    CGeomPoint* pgptMinBound = new CGeomPoint[count];
+//    CGeomPoint* pgptMaxBound = new CGeomPoint[count];
+//
+//    double* pDx = new double[2 * count];
+//    double* pDy = new double[2 * count];
+//    double* pDz = new double[2 * count];
+//
+//    for (int k = 0; k < count; k++)
+//    {
+//        CBSpline *pObjBSpln = pDoc->GetBSpline(k);
+//        pObjBSpln->GetBoundingBox(pgptMinBound[k], pgptMaxBound[k]);
+//        pDx[k] = pgptMinBound[k].m_Coord[0];
+//        pDx[k + count] = pgptMaxBound[k].m_Coord[0];
+//        pDy[k] = pgptMinBound[k].m_Coord[1];
+//        pDy[k + count] = pgptMaxBound[k].m_Coord[1];
+//        pDz[k] = pgptMinBound[k].m_Coord[2];
+//        pDz[k + count] = pgptMaxBound[k].m_Coord[2];
+//    }
+//
+//    if (pgptMaxBound) delete[] pgptMaxBound;
+//    if (pgptMinBound) delete[] pgptMinBound;
+//
+//    CGeomPoint gptMaxBound, gptMinBound;
+//
+//    FindMinMax(pDx, (2 * count), gptMaxBound.m_Coord[0], gptMinBound.m_Coord[0]);
+//    FindMinMax(pDy, (2 * count), gptMaxBound.m_Coord[1], gptMinBound.m_Coord[1]);
+//    FindMinMax(pDz, (2 * count), gptMaxBound.m_Coord[2], gptMinBound.m_Coord[2]);
+//
+//    if (pDx) delete[] pDx;
+//    if (pDy) delete[] pDy;
+//    if (pDz) delete[] pDz;
+//
+//    //Find the center point of the Bspines
+//    CGeomPoint gptCenter;
+//    gptCenter.m_Dim = 3;
+//    for (int i = 0; i < 3; i++)
+//        gptCenter.m_Coord[i] = (gptMaxBound.m_Coord[i] + gptMinBound.m_Coord[i]) / 2;
+//
+//
+//    //Translate it to the Center
+//    double dMat[16] = { 0 };
+//    VERIFY_GL(glGetDoublev(GL_MODELVIEW_MATRIX, dMat));
+//
+//    VERIFY_GL(glMatrixMode(GL_MODELVIEW));
+//    VERIFY_GL(glLoadIdentity());
+//
+//    dMat[12] = 0;
+//    dMat[13] = 0;
+//    dMat[14] = 0;
+//
+//    VERIFY_GL(glMultMatrixd(dMat));
+//    VERIFY_GL(glTranslated(-gptCenter.m_Coord[0], -gptCenter.m_Coord[1], -gptCenter.m_Coord[2]));
+//
+//    //Set the Scaling factor
+//    CGeomPoint gptBound;
+//    gptBound.m_Dim = 3;
+//    for (int i = 0; i < 3; i++)
+//        gptBound.m_Coord[i] = (gptMaxBound.m_Coord[i] - gptMinBound.m_Coord[i]);
+//
+//    Vector vec(gptBound.m_Coord[0], gptBound.m_Coord[1], gptBound.m_Coord[2]);
+//
+//    pDoc->m_dSphereRad = vec.VectorDet() / 2;
+//    pDoc->m_dScaleFactor = 1.0;
+//}
+
+void GLManager::PickSquares(Point point){}
+//{
+//    CGLSampleDoc *pDoc = GetDocument();
+//
+//    CGeomEntity *pEntity = pDoc->GetEntityFromID(m_iPickEntityID);
+//    if (m_iPickEntityID)
+//    {
+//        if (pEntity) pEntity->SetSelectionStatus(false);
+//
+//        m_iPickEntityID = NULL;
+//        m_iCurrentPointID = NULL;
+//    }
+//
+//    GLuint glSelectBuff[BUFSIZE];
+//    GLint gliSelected;
+//
+//    GLint glViewPort[4];
+//    glGetIntegerv(GL_VIEWPORT, glViewPort);
+//    glSelectBuffer(BUFSIZE, glSelectBuff);
+//
+//    (void)glRenderMode(GL_SELECT);
+//    glInitNames();
+//    glPushName(0);
+//    glMatrixMode(GL_PROJECTION);
+//    glPushMatrix();
+//    glLoadIdentity();
+//
+//    double glMatrix[16] = { 0 };
+//    glGetDoublev(GL_PROJECTION_MATRIX, glMatrix);
+//    /* create 5x5 pixel picking region near cursor location */
+//    gluPickMatrix((GLdouble)point.x, (GLdouble)(glViewPort[3] - point.y), 5.0, 5.0, glViewPort);
+//
+//
+//    glGetDoublev(GL_PROJECTION_MATRIX, glMatrix);
+//    glGetDoublev(GL_MODELVIEW_MATRIX, glMatrix);
+//
+//    double sphereSize = pDoc->m_dSphereRad * 50.0;
+//    double xextent = double(m_iWinWidth) / min(double(m_iWinWidth), double(m_iWinHeight));
+//    double yextent = double(m_iWinHeight) / min(double(m_iWinWidth), double(m_iWinHeight));
+//    glOrtho(-xextent * pDoc->m_dSphereRad * pDoc->m_dScaleFactor,
+//        xextent * pDoc->m_dSphereRad * pDoc->m_dScaleFactor,
+//        -yextent * pDoc->m_dSphereRad * pDoc->m_dScaleFactor,
+//        yextent * pDoc->m_dSphereRad * pDoc->m_dScaleFactor,
+//        sphereSize, -sphereSize);
+//    glGetDoublev(GL_PROJECTION_MATRIX, glMatrix);
+//    //SetViewVolume();
+//    RenderScene(GL_SELECT);
+//    glMatrixMode(GL_PROJECTION);
+//    glPopMatrix();
+//    glFlush();
+//    gliSelected = glRenderMode(GL_RENDER);
+//
+//    int iSel = 0;
+//    for (int i = 0; i < gliSelected; i++)
+//    {
+//        int iNames = glSelectBuff[iSel++]; iSel++; iSel++;
+//        for (int j = 0; j < iNames; j++)
+//        {
+//            unsigned int uiNameID = glSelectBuff[iSel]; iSel++;
+//            if (iNames == 2 && j == 1)
+//            {
+//                m_iCurrentPointID = uiNameID;
+//                break;
+//            }
+//            m_iPickEntityID = uiNameID;
+//        }
+//    }
+//
+//    if (!gliSelected)
+//    {
+//        m_iPickEntityID = NULL;
+//        m_iCurrentPointID = NULL;
+//    }
+//
+//    pEntity = pDoc->GetEntityFromID(m_iPickEntityID);
+//
+//    m_iPickEntityID = glSelectBuff[3];
+//    if (pEntity)pEntity->SetSelectionStatus(true);
+//
+//    //processHits (hits, selectBuf);
+//}
 
 //
 //Render World Cordinte Axes
@@ -270,6 +427,18 @@ void GLManager::PanView(Point point)
 }
 
 //-----------------------------------------------------------------------------
+// FUNC:	PanView
+// ACTION:	Moves the centre of the view using the difference between two points.
+void GLManager::FrontView()
+{
+    double m[16];
+
+    VERIFY_GL(glMatrixMode(GL_MODELVIEW));
+    VERIFY_GL(glGetDoublev(GL_MODELVIEW_MATRIX, m));
+    VERIFY_GL(glLoadIdentity());
+}
+
+//-----------------------------------------------------------------------------
 // FUNC:	ZoomView
 // ACTION:	Scales up/down the object in the view using the Mouse wheel
 //			
@@ -291,15 +460,15 @@ void GLManager::ZoomView(double dScale, Point point)
 // FUNC:	ProximitySelect
 // ACTION:	Highlight/Selects the proximity entity.
 //			
-//void GLManager::ProximitySelect( Point point)
-//{
-//}
+void GLManager::ProximitySelect( Point point)
+{
+}
 
 ////-----------------------------------------------------------------------------
 //// FUNC:	ModifyEntity
 //// ACTION:	Modify Selected the proximity entity.
 ////			
-//void GLManager::ModifyEntity(Point point)
+void GLManager::ModifyEntity(Point point){}
 //{
 //    if (m_iCurrentPointID && m_iPickEntityID)
 //    {

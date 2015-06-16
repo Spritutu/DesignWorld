@@ -52,6 +52,10 @@ public:
     afx_msg void OnDestroy();
     afx_msg void OnSize(UINT nType, int cx, int cy);
 
+    afx_msg void OnViewFront();
+    afx_msg void OnViewFit();
+    afx_msg void OnViewPan();
+
 private:
     int m_GLPixelIndex;
 

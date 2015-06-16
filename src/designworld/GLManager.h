@@ -38,11 +38,14 @@ public:
     void SetBsplineFit();
 
     //Pan, Zoom and Rotate
-    void RotateView(Point point);
-    void PanView(Point point);
-    void ZoomView(double dScale, Point point);
+    void DESIGNWORLDAPI RotateView(Point point);
+    void DESIGNWORLDAPI PanView(Point point);
+    void DESIGNWORLDAPI ZoomView(double dScale, Point point);
+    void DESIGNWORLDAPI FrontView();
+
     void PickSquares(Point point);
     void ModifyEntity(Point point);
+    void ProximitySelect(Point point);
 
     void PrepareScene();
 
