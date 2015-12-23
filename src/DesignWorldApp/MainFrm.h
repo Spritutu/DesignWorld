@@ -42,6 +42,7 @@ protected:  // control bar embedded members
 	CClassView        m_wndClassView;
 	COutputWnd        m_wndOutput;
 	CPropertiesWnd    m_wndProperties;
+    CMFCToolBar       m_ViewToolBar;
 
 // Generated message map functions
 protected:

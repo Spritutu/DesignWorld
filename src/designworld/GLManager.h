@@ -38,21 +38,38 @@ public:
     void SetBsplineFit();
 
     //Pan, Zoom and Rotate
-    void DESIGNWORLDAPI RotateView(Point point);
-    void DESIGNWORLDAPI PanView(Point point);
-    void DESIGNWORLDAPI ZoomView(double dScale, Point point);
+    void DESIGNWORLDAPI RotateView(SPoint point);
+    void DESIGNWORLDAPI PanView(SPoint point);
+    void DESIGNWORLDAPI ZoomView(double dScale, SPoint point);
     void DESIGNWORLDAPI FrontView();
+    void DESIGNWORLDAPI FitView();
+    void DESIGNWORLDAPI SetCurrentViewOperation(ParaViewOperation currentOperation);
+    ParaViewOperation DESIGNWORLDAPI CurrentViewOperation();
 
-    void PickSquares(Point point);
-    void ModifyEntity(Point point);
-    void ProximitySelect(Point point);
+    //Mouse Operation
+    SPoint DESIGNWORLDAPI dw_PixlestoPoint(int iX, int iY);
+    void DESIGNWORLDAPI dw_LButtonDown(unsigned int uiFlags, SPoint point);
+    void DESIGNWORLDAPI dw_LButtonUp(unsigned int uiFlags, SPoint point);
+
+    void PickSquares(SPoint point);
+    void ProximitySelect(SPoint point);
 
     void PrepareScene();
+
+    //Draw
+    void DESIGNWORLDAPI DrawLine();
+
+
+    //Modify
+    void DESIGNWORLDAPI ModifyEntity(SPoint point);
+    void DESIGNWORLDAPI ModifyLine(SPoint point);
 
     GLManager(void);
     virtual ~GLManager(void);
 
 private:
+
+    ParaViewOperation m_currentOperation;
 
     //Volume Attributes
     double m_dSphereRad; //Volume Radius
@@ -61,14 +78,17 @@ private:
     //Variables
     int m_iWinWidth;
     int m_iWinHeight;
-    Point m_currentPoint;
-    Point m_Startpoint;
+    SPoint m_currentPoint;
+    SPoint m_Startpoint;
 
     GLdouble m_xRotate;
     GLdouble m_yRotate;
 
     ObjectManager * m_pObjectManager;
 
+public:
+    bool m_bLine;
+    unsigned int m_iCurrentLineID;
 };
 
 

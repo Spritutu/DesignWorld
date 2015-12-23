@@ -8,6 +8,24 @@ $HISTORY$*/
 #include "Geometry.h"
 #include "Vector.h"
 
+struct str_POINT {
+    double x;
+    double y;
+    double z;
+    double h;
+
+    str_POINT()
+    {
+        x = 0;
+        y = 0;
+        z = 0;
+        h = 0;
+    }
+};
+
+typedef str_POINT SPoint;
+
+
 class Point :
     public Geometry
 {
@@ -15,9 +33,14 @@ public:
     //Class Constructors
     Point(void);
     Point(const Point &Point);
+    Point(SPoint point);
     Point(int iDim, double dCord[]);
     Point(double x, double y, double z=0, double h = 1);
     ~Point(void);
+
+    double X();
+    double Y();
+    double Z();
 
     void ModifyPoint(const Point &point);
     void ModifyPoint(double x, double y, double z=0, double h=1);
@@ -28,8 +51,8 @@ public:
     Point operator +(Point &point);
     Point operator +(Vector &vec);
     
-public:
+private:
     int m_iDimension;
-    double x, y, z, h;
+    SPoint m_point;
 };
 

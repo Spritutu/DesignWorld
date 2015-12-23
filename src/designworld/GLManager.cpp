@@ -14,6 +14,7 @@ GLManager::GLManager(void)
     m_dSphereRad = 1.0;
 
     m_pObjectManager = GetDWObjectManager();
+    m_currentOperation = Idle;
 }
 
 
@@ -34,6 +35,26 @@ void GLManager::setWinWidth(int iWinWidth)
 void GLManager::setWinHeight(int iWinHeight)
 {
     m_iWinHeight = iWinHeight;
+}
+
+//Draw Oeprtion
+
+void GLManager::DrawLine()
+{
+    ObjectManager *pObjectManager = GetObjectManager();
+
+    if (pObjectManager->GetLineCount() > 0)
+    {
+        for (int i = 0; i < pObjectManager->GetLineCount(); i++)
+        {
+            Line *pLine = pObjectManager->GetLine(i);
+            glBegin(GL_LINES);
+            glVertex3d(pLine->StartPoint().X(), pLine->StartPoint().Y(), pLine->StartPoint().Z());
+            glVertex3d(pLine->EndPoint().X(), pLine->EndPoint().Y(), pLine->EndPoint().Z());
+            glEnd();
+        }
+    }
+
 }
 
 
@@ -57,14 +78,7 @@ void GLManager::RenderScene(GLenum glRenderMode)
     //Render World Coordinate Axes.
     RenderCSYS();
 
-    if (pObjectManager->GetLineCount())
-    {
-        for (int i = 0; i < pObjectManager->GetLineCount(); i++)
-        {
-            Line *pLine = pObjectManager->GetLine(i);
-            //pLine->Draw();
-        }
-    }
+    DrawLine();
     //if (pObjectManager->GetBSplineCount())
     //{
     //    for (int i = 0; i < pObjectManager->GetBSplineCount(); i++)
@@ -254,7 +268,7 @@ void GLManager::SetBsplineFit() {}
 //    pDoc->m_dScaleFactor = 1.0;
 //}
 
-void GLManager::PickSquares(Point point){}
+void GLManager::PickSquares(SPoint point){}
 //{
 //    CGLSampleDoc *pDoc = GetDocument();
 //
@@ -371,7 +385,7 @@ void GLManager::RenderCSYS()
 // FUNC;	RotateView
 // ACTION:	Rotates the view using the difference between two Points
 
-void GLManager::RotateView(Point point)
+void GLManager::RotateView(SPoint point)
 {
     //g_streamOut << "Rotation ---------\n";
     //WriteToFile();
@@ -403,7 +417,7 @@ void GLManager::RotateView(Point point)
 // FUNC:	PanView
 // ACTION:	Moves the centre of the view using the difference between two points.
 
-void GLManager::PanView(Point point)
+void GLManager::PanView(SPoint point)
 {
     // get the document, manipulating centre 
 
@@ -427,7 +441,7 @@ void GLManager::PanView(Point point)
 }
 
 //-----------------------------------------------------------------------------
-// FUNC:	PanView
+// FUNC:	FrontView
 // ACTION:	Moves the centre of the view using the difference between two points.
 void GLManager::FrontView()
 {
@@ -443,7 +457,7 @@ void GLManager::FrontView()
 // ACTION:	Scales up/down the object in the view using the Mouse wheel
 //			
 
-void GLManager::ZoomView(double dScale, Point point)
+void GLManager::ZoomView(double dScale, SPoint point)
 {
 
     if ((m_dScaleFactor / dScale) > MIN_SCALE_FACTOR)
@@ -457,10 +471,33 @@ void GLManager::ZoomView(double dScale, Point point)
 }
 
 //-----------------------------------------------------------------------------
+// FUNC:	FitView
+// ACTION:	fit the view
+//			
+
+void GLManager::FitView()
+{
+    //SetBsplineFit(); //Fits the bspline in doc
+    SetViewVolume();
+    return;
+}
+
+void GLManager::SetCurrentViewOperation(ParaViewOperation currentOperation)
+{
+    m_currentOperation = currentOperation;
+    return;
+}
+
+ParaViewOperation GLManager::CurrentViewOperation()
+{
+    return m_currentOperation;
+}
+
+//-----------------------------------------------------------------------------
 // FUNC:	ProximitySelect
 // ACTION:	Highlight/Selects the proximity entity.
 //			
-void GLManager::ProximitySelect( Point point)
+void GLManager::ProximitySelect( SPoint point)
 {
 }
 
@@ -468,7 +505,7 @@ void GLManager::ProximitySelect( Point point)
 //// FUNC:	ModifyEntity
 //// ACTION:	Modify Selected the proximity entity.
 ////			
-void GLManager::ModifyEntity(Point point){}
+void GLManager::ModifyEntity(SPoint point){}
 //{
 //    if (m_iCurrentPointID && m_iPickEntityID)
 //    {
@@ -608,4 +645,72 @@ DESIGNWORLDAPI GLManager * GetDWGLManager()
     GLManager *pObj = new GLManager();
 
     return pObj;
+}
+
+//Mouse Operation
+
+SPoint GLManager::dw_PixlestoPoint(int iX, int iY)
+{
+
+    GLint glViewPort[4];
+    glGetIntegerv(GL_VIEWPORT, glViewPort);
+    Point glpoint(iX, glViewPort[3] - iY);
+
+    double dModel[16] = { 0 };
+    double dProj[16] = { 0 };
+    VERIFY_GL(glGetDoublev(GL_MODELVIEW_MATRIX, dModel));
+    VERIFY_GL(glGetDoublev(GL_PROJECTION_MATRIX, dProj));
+
+    SPoint point;
+    gluUnProject(glpoint.X(), glpoint.Y(), .5, dModel, dProj, glViewPort, &(point.x), &(point.y), &(point.z));
+    
+    return point;
+}
+void GLManager::dw_LButtonDown(unsigned int uiFlags, SPoint point)
+{
+    if (this->CurrentViewOperation() != Pan)
+        this->SetCurrentViewOperation(Pick);
+
+    //g_streamOut << "Pick point:\t" << point.x << "\t" << point.y << "\n";
+
+    PickSquares(point);
+
+    m_currentPoint = point;
+    m_Startpoint = point;
+
+    if (m_bLine)
+    {
+        Point ptStart = m_Startpoint;
+        Point ptEnd = point;
+
+        Line *pLine = m_pObjectManager->AddLine(ptStart, ptEnd);
+        m_iCurrentLineID = pLine->GetID();
+    }
+
+    return;
+}
+
+void GLManager::dw_LButtonUp(unsigned int uiFlas, SPoint point)
+{
+
+    this->SetCurrentViewOperation(Idle);
+
+    if (m_bLine && m_iCurrentLineID)
+    {
+        Line *pLine = m_pObjectManager->GetLineFromID(m_iCurrentLineID);
+        pLine->ModifyLine(pLine->GetStartPoint(), Point(point));
+
+        m_iCurrentLineID = NULL;
+    }
+
+    //g_streamOut.close();
+
+}
+
+void GLManager::ModifyLine(SPoint point)
+{
+    Line *pLine = GetObjectManager()->GetLine(m_iCurrentLineID);
+    pLine->ModifyLine(pLine->GetStartPoint(), Point(point));
+
+    return;
 }

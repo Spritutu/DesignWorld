@@ -40,6 +40,15 @@ Line::~Line(void)
 {
 }
 
+Point &Line::StartPoint()
+{
+    return m_ptStart;
+}
+Point &Line::EndPoint()
+{
+    return m_ptEnd;
+}
+
 void Line::ModifyLine(Point ptStart, Point ptEnd)
 {
     m_ptStart = ptStart;
@@ -58,4 +67,14 @@ Line &Line::operator =(const Line &line)
     m_ptEnd = line.m_ptEnd;
     
     return *this;
+}
+
+Point Line::GetStartPoint()
+{
+    return m_ptStart;
+}
+
+Point Line::GetEndPoint()
+{
+    return m_ptEnd;
 }

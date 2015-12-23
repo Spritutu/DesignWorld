@@ -19,8 +19,14 @@ public:
     Line(const Line &Obj);
     ~Line(void);
 
+    Point &StartPoint();
+    Point &EndPoint();
+
     void ModifyLine(Point ptStart, Point ptEnd);
     void ModifyLine(const Line &Obj);
+
+    Point GetStartPoint();
+    Point GetEndPoint();
 
     //Operator Overloading
     Line &operator =(const Line &line);

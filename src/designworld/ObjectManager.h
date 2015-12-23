@@ -96,6 +96,9 @@ private:
     std::vector<Line *> m_vecLines;
     std::vector<Point *> m_vecPoints;
     unsigned int m_uiCurrentID;
+
+public:
+    bool m_bLine;
 };
 
 

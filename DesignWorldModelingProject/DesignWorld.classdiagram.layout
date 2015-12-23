@@ -5,8 +5,8 @@
     <classShape Id="fe240f07-d141-4fd1-a615-c32610b10ca0" isExpanded="false" absoluteBounds="3.375, 1.875, 1.5, 0.5" hideQualifiedName="false" increaseHeight="0" customColor="181, 193, 223">
       <classMoniker Id="d642d359-bdec-494d-a7d8-a057e3a574d6" LastKnownName="Object" />
       <nestedChildShapes>
-        <AttributeElementListCompartment Id="e1d6f051-9122-49c3-83d3-a96dd727708f" absoluteBounds="3.39, 2.265, 1.4700000000000002, 0.22117186754941942" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
-        <OperationElementListCompartment Id="0f0194d6-5daa-4719-a0cc-a32fea237ad0" absoluteBounds="3.39, 2.4961718675494193, 1.4700000000000002, 0.2011718675494194" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <AttributeElementListCompartment Id="e1d6f051-9122-49c3-83d3-a96dd727708f" absoluteBounds="3.39, 2.265, 1.4700000000000002, 0.2011718675494194" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <OperationElementListCompartment Id="0f0194d6-5daa-4719-a0cc-a32fea237ad0" absoluteBounds="3.39, 2.4761718675494193, 1.4700000000000002, 0.2011718675494194" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="84babf3c-0959-429e-8b37-99c7b9d4480d" isExpanded="false" absoluteBounds="1, 1, 1.5, 0.5" hideQualifiedName="false" increaseHeight="0" customColor="181, 193, 223">
