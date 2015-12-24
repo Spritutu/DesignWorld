@@ -59,11 +59,6 @@ public:
     //Draw
     void DESIGNWORLDAPI DrawLine();
 
-
-    //Modify
-    void DESIGNWORLDAPI ModifyEntity(SPoint point);
-    void DESIGNWORLDAPI ModifyLine(SPoint point);
-
     GLManager(void);
     virtual ~GLManager(void);
 
@@ -85,10 +80,6 @@ private:
     GLdouble m_yRotate;
 
     ObjectManager * m_pObjectManager;
-
-public:
-    bool m_bLine;
-    unsigned int m_iCurrentLineID;
 };
 
 

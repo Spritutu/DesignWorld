@@ -91,6 +91,9 @@ public:
     int GetLineCount();
     Line *AddLine(Point ptFrom, Point ptTo);
     void DeleteLineCounts();
+    
+    //Modify entities
+    void DESIGNWORLDAPI ModifyEntity(SPoint point);
 
 private:
     std::vector<Line *> m_vecLines;
@@ -99,6 +102,7 @@ private:
 
 public:
     bool m_bLine;
+    unsigned int m_iCurrentLineID;
 };
 
 

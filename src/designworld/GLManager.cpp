@@ -501,95 +501,6 @@ void GLManager::ProximitySelect( SPoint point)
 {
 }
 
-////-----------------------------------------------------------------------------
-//// FUNC:	ModifyEntity
-//// ACTION:	Modify Selected the proximity entity.
-////			
-void GLManager::ModifyEntity(SPoint point){}
-//{
-//    if (m_iCurrentPointID && m_iPickEntityID)
-//    {
-//        CGLSampleDoc *pDoc = GetDocument();
-//
-//        CGeomEntity *pEntity = GetEntityFromID(m_iPickEntityID);
-//
-//        CGeomPoint *pgptPicked = NULL;
-//
-//        SetViewVolume();
-//        CGeomPoint gpt;
-//
-//        double dModel[16] = { 0 };
-//        double dProj[16] = { 0 };
-//        VERIFY_GL(glGetDoublev(GL_MODELVIEW_MATRIX, dModel));
-//        VERIFY_GL(glGetDoublev(GL_PROJECTION_MATRIX, dProj));
-//
-//        GLint glViewPort[4];
-//        glGetIntegerv(GL_VIEWPORT, glViewPort);
-//        Point glpoint(point.x, glViewPort[3] - point.y);
-//
-//        if (pEntity->GetGeometryType() == TL_BSPLINE)
-//        {
-//            CBSpline *pBSpline = (CBSpline*)pEntity;
-//
-//            int iNumPts = (pBSpline->m_iCtrlPt > pBSpline->m_iDataPt) ? pBSpline->m_iCtrlPt : pBSpline->m_iDataPt;
-//
-//            for (int i = 0; i < iNumPts; i++)
-//            {
-//                if (pBSpline->m_iCtrlPt >= iNumPts && pBSpline->m_pgptCtrl[i].GetID() == m_iCurrentPointID)
-//                {
-//                    GLdouble dlWinPoint[3] = { 0 };
-//                    gluProject(pBSpline->m_pgptCtrl[i].m_Coord[0], pBSpline->m_pgptCtrl[i].m_Coord[1], pBSpline->m_pgptCtrl[i].m_Coord[2],
-//                        dModel, dProj, glViewPort, &dlWinPoint[0], &dlWinPoint[1], &dlWinPoint[2]);
-//
-//                    gluUnProject(glpoint.x, glpoint.y, dlWinPoint[2], dModel, dProj, glViewPort, &(gpt.m_Coord[0]), &(gpt.m_Coord[1]), &(gpt.m_Coord[2]));
-//                    for (int j = 0; j < 3; j++)
-//                        pBSpline->m_pgptCtrl[i].m_Coord[j] = gpt.m_Coord[j];
-//
-//                    pBSpline->CalculateDataPoints();
-//                    break;
-//                }
-//                else if (pBSpline->m_iDataPt >= iNumPts && pBSpline->m_pgptData[i].GetID() == m_iCurrentPointID)
-//                {
-//                    GLdouble dlWinPoint[3] = { 0 };
-//                    gluProject(pBSpline->m_pgptData[i].m_Coord[0], pBSpline->m_pgptData[i].m_Coord[1], pBSpline->m_pgptData[i].m_Coord[2],
-//                        dModel, dProj, glViewPort, &dlWinPoint[0], &dlWinPoint[1], &dlWinPoint[2]);
-//
-//                    gluUnProject(glpoint.x, glpoint.y, dlWinPoint[2], dModel, dProj, glViewPort, &(gpt.m_Coord[0]), &(gpt.m_Coord[1]), &(gpt.m_Coord[2]));
-//                    for (int j = 0; j < 3; j++)
-//                        pBSpline->m_pgptData[i].m_Coord[j] = gpt.m_Coord[j];
-//                    pBSpline->CalculateControlPoints();
-//                    break;
-//                }
-//            }
-//
-//            pBSpline->CalculateBSpline();
-//        }
-//        else if (pEntity->GetGeometryType() == TL_BSURF)
-//        {
-//            CBSurf *pBSurf = (CBSurf *)pEntity;
-//
-//            int iNumPts = pBSurf->GetColumnNumber() * pBSurf->GetRowNumber();
-//
-//            for (int i = 0; i < iNumPts; i++)
-//            {
-//                if (pBSurf->m_pGeomPts[i].GetID() == m_iCurrentPointID)
-//                {
-//                    GLdouble dlWinPoint[3] = { 0 };
-//                    gluProject(pBSurf->m_pGeomPts[i].m_Coord[0], pBSurf->m_pGeomPts[i].m_Coord[1], pBSurf->m_pGeomPts[i].m_Coord[2],
-//                        dModel, dProj, glViewPort, &dlWinPoint[0], &dlWinPoint[1], &dlWinPoint[2]);
-//
-//                    gluUnProject(glpoint.x, glpoint.y, dlWinPoint[2], dModel, dProj, glViewPort, &(gpt.m_Coord[0]), &(gpt.m_Coord[1]), &(gpt.m_Coord[2]));
-//                    for (int j = 0; j < 3; j++)
-//                        pBSurf->m_pGeomPts[i].m_Coord[j] = gpt.m_Coord[j];
-//                    break;
-//                }
-//            }
-//            pBSurf->CalculateBSurface();
-//        }
-//    }
-//    //Invalidate(FALSE);
-//}
-
 void CreatePolygon()
 {
     glPolygonMode(GL_FRONT, GL_LINE);
@@ -678,13 +589,12 @@ void GLManager::dw_LButtonDown(unsigned int uiFlags, SPoint point)
     m_currentPoint = point;
     m_Startpoint = point;
 
-    if (m_bLine)
+    if (m_pObjectManager->IsLineCommandActive())
     {
         Point ptStart = m_Startpoint;
         Point ptEnd = point;
 
         Line *pLine = m_pObjectManager->AddLine(ptStart, ptEnd);
-        m_iCurrentLineID = pLine->GetID();
     }
 
     return;
@@ -695,22 +605,9 @@ void GLManager::dw_LButtonUp(unsigned int uiFlas, SPoint point)
 
     this->SetCurrentViewOperation(Idle);
 
-    if (m_bLine && m_iCurrentLineID)
+    if (m_pObjectManager->IsLineCommandActive())
     {
-        Line *pLine = m_pObjectManager->GetLineFromID(m_iCurrentLineID);
-        pLine->ModifyLine(pLine->GetStartPoint(), Point(point));
-
-        m_iCurrentLineID = NULL;
+        m_pObjectManager->ModifyLine(point);
     }
-
     //g_streamOut.close();
-
-}
-
-void GLManager::ModifyLine(SPoint point)
-{
-    Line *pLine = GetObjectManager()->GetLine(m_iCurrentLineID);
-    pLine->ModifyLine(pLine->GetStartPoint(), Point(point));
-
-    return;
 }

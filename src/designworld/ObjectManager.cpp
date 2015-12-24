@@ -10,7 +10,10 @@ $HISTORY$*/
 
 ObjectManager::ObjectManager(void)
 {
+    m_bLine = false;
+    m_iCurrentLineID = 0;
 
+    m_uiCurrentID = 0;
 }
 
 
@@ -192,8 +195,11 @@ Line *ObjectManager::AddLine(Point ptFrom, Point ptTo)
     Line *pLine = new Line( ptFrom, ptTo);
 
     m_vecLines.push_back(pLine);
+
+    m_iCurrentLineID = pLine->GetID();
     //SetModifiedFlag();
     //UpdateAllViews( NULL );
+
     return pLine;
 }
 
@@ -210,12 +216,101 @@ void ObjectManager::DeleteLineCounts()
     }
 }
 
-DESIGNWORLDAPI ObjectManager * GetDWObjectManager()
-{
-    ObjectManager *pObj = new ObjectManager;
+////-----------------------------------------------------------------------------
+//// FUNC:	ModifyEntity
+//// ACTION:	Modify Selected the proximity entity.
+////			
+void ObjectManager::ModifyEntity(SPoint point){
 
-    return pObj;
+    if (m_bLine){
+        Line *pLine = GetLine(m_iCurrentLineID);
+        pLine->ModifyLine(pLine->GetStartPoint(), Point(point));
+    }
 }
+//{
+//    if (m_iCurrentPointID && m_iPickEntityID)
+//    {
+//        CGLSampleDoc *pDoc = GetDocument();
+//
+//        CGeomEntity *pEntity = GetEntityFromID(m_iPickEntityID);
+//
+//        CGeomPoint *pgptPicked = NULL;
+//
+//        SetViewVolume();
+//        CGeomPoint gpt;
+//
+//        double dModel[16] = { 0 };
+//        double dProj[16] = { 0 };
+//        VERIFY_GL(glGetDoublev(GL_MODELVIEW_MATRIX, dModel));
+//        VERIFY_GL(glGetDoublev(GL_PROJECTION_MATRIX, dProj));
+//
+//        GLint glViewPort[4];
+//        glGetIntegerv(GL_VIEWPORT, glViewPort);
+//        Point glpoint(point.x, glViewPort[3] - point.y);
+//
+//        if (pEntity->GetGeometryType() == TL_BSPLINE)
+//        {
+//            CBSpline *pBSpline = (CBSpline*)pEntity;
+//
+//            int iNumPts = (pBSpline->m_iCtrlPt > pBSpline->m_iDataPt) ? pBSpline->m_iCtrlPt : pBSpline->m_iDataPt;
+//
+//            for (int i = 0; i < iNumPts; i++)
+//            {
+//                if (pBSpline->m_iCtrlPt >= iNumPts && pBSpline->m_pgptCtrl[i].GetID() == m_iCurrentPointID)
+//                {
+//                    GLdouble dlWinPoint[3] = { 0 };
+//                    gluProject(pBSpline->m_pgptCtrl[i].m_Coord[0], pBSpline->m_pgptCtrl[i].m_Coord[1], pBSpline->m_pgptCtrl[i].m_Coord[2],
+//                        dModel, dProj, glViewPort, &dlWinPoint[0], &dlWinPoint[1], &dlWinPoint[2]);
+//
+//                    gluUnProject(glpoint.x, glpoint.y, dlWinPoint[2], dModel, dProj, glViewPort, &(gpt.m_Coord[0]), &(gpt.m_Coord[1]), &(gpt.m_Coord[2]));
+//                    for (int j = 0; j < 3; j++)
+//                        pBSpline->m_pgptCtrl[i].m_Coord[j] = gpt.m_Coord[j];
+//
+//                    pBSpline->CalculateDataPoints();
+//                    break;
+//                }
+//                else if (pBSpline->m_iDataPt >= iNumPts && pBSpline->m_pgptData[i].GetID() == m_iCurrentPointID)
+//                {
+//                    GLdouble dlWinPoint[3] = { 0 };
+//                    gluProject(pBSpline->m_pgptData[i].m_Coord[0], pBSpline->m_pgptData[i].m_Coord[1], pBSpline->m_pgptData[i].m_Coord[2],
+//                        dModel, dProj, glViewPort, &dlWinPoint[0], &dlWinPoint[1], &dlWinPoint[2]);
+//
+//                    gluUnProject(glpoint.x, glpoint.y, dlWinPoint[2], dModel, dProj, glViewPort, &(gpt.m_Coord[0]), &(gpt.m_Coord[1]), &(gpt.m_Coord[2]));
+//                    for (int j = 0; j < 3; j++)
+//                        pBSpline->m_pgptData[i].m_Coord[j] = gpt.m_Coord[j];
+//                    pBSpline->CalculateControlPoints();
+//                    break;
+//                }
+//            }
+//
+//            pBSpline->CalculateBSpline();
+//        }
+//        else if (pEntity->GetGeometryType() == TL_BSURF)
+//        {
+//            CBSurf *pBSurf = (CBSurf *)pEntity;
+//
+//            int iNumPts = pBSurf->GetColumnNumber() * pBSurf->GetRowNumber();
+//
+//            for (int i = 0; i < iNumPts; i++)
+//            {
+//                if (pBSurf->m_pGeomPts[i].GetID() == m_iCurrentPointID)
+//                {
+//                    GLdouble dlWinPoint[3] = { 0 };
+//                    gluProject(pBSurf->m_pGeomPts[i].m_Coord[0], pBSurf->m_pGeomPts[i].m_Coord[1], pBSurf->m_pGeomPts[i].m_Coord[2],
+//                        dModel, dProj, glViewPort, &dlWinPoint[0], &dlWinPoint[1], &dlWinPoint[2]);
+//
+//                    gluUnProject(glpoint.x, glpoint.y, dlWinPoint[2], dModel, dProj, glViewPort, &(gpt.m_Coord[0]), &(gpt.m_Coord[1]), &(gpt.m_Coord[2]));
+//                    for (int j = 0; j < 3; j++)
+//                        pBSurf->m_pGeomPts[i].m_Coord[j] = gpt.m_Coord[j];
+//                    break;
+//                }
+//            }
+//            pBSurf->CalculateBSurface();
+//        }
+//    }
+//    //Invalidate(FALSE);
+//}
+
 
 /*
 
@@ -504,3 +599,10 @@ bool CGLSampleDoc::ValidateFemBeamID(int ID)
     return false;
 }
 */
+
+DESIGNWORLDAPI ObjectManager * GetDWObjectManager()
+{
+    ObjectManager *pObj = new ObjectManager;
+
+    return pObj;
+}
