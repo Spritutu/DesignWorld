@@ -10,7 +10,7 @@ $HISTORY$*/
 //Class Constructors
 
 Point::Point(void):
-    Geometry(DW_POINT),
+    Geometry(GEOM_POINT),
     m_iDimension(4)
 {
     m_point.x = 0;
@@ -20,7 +20,7 @@ Point::Point(void):
 }
 
 Point::Point(const Point &point):
-    Geometry(DW_POINT),
+    Geometry(GEOM_POINT),
     m_iDimension(point.m_iDimension)
 {
     m_point.x = point.m_point.x;
@@ -30,7 +30,7 @@ Point::Point(const Point &point):
 }
 
 Point::Point(SPoint point):
-    Geometry(DW_POINT),
+    Geometry(GEOM_POINT),
     m_iDimension(4)
 {
     m_point.x = point.x;
@@ -39,7 +39,7 @@ Point::Point(SPoint point):
     m_point.h = point.h;
 }
 Point::Point(int iDim, double dCoord[]):
-    Geometry(DW_POINT),
+    Geometry(GEOM_POINT),
     m_iDimension(iDim)
 {
     m_point.x = dCoord[0];
@@ -58,7 +58,7 @@ Point::Point(int iDim, double dCoord[]):
 }
 
 Point::Point(double x, double y, double z, double h):
-    Geometry(DW_POINT),
+    Geometry(GEOM_POINT),
     m_iDimension(4)
 {
     m_point.x = x;

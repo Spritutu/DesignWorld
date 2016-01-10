@@ -246,7 +246,7 @@ void CDWMFCApplicationView::OnViewPan()
 
 void CDWMFCApplicationView::OnGeometryLine()
 {
-    m_pGLManager->m_bLine = true;
+    m_pGLManager->GetObjectManager()->SetGeometryCommand(CMD_LINE);
 }
 
 
@@ -297,7 +297,7 @@ void CDWMFCApplicationView::OnMouseMove(UINT nFlags, CPoint point)
             //m_pGLManager->ProximitySelect( pt );
             break;
         case Pick:
-            m_pGLManager->ModifyEntity( pt );
+            m_pGLManager->GetObjectManager()->ModifyEntity( pt );
         default:
             break;
         }
@@ -305,10 +305,11 @@ void CDWMFCApplicationView::OnMouseMove(UINT nFlags, CPoint point)
 
     m_currentPoint = point;
 
-    if (m_pGLManager->m_bLine && m_pGLManager->m_iCurrentLineID)
+    if (m_pGLManager->GetObjectManager()->GetGeometryCommand() == CMD_LINE)
     {
-        m_pGLManager->ModifyLine(pt);
+        m_pGLManager->GetObjectManager()->ModifyEntity(pt);
 
         Invalidate(FALSE);
     }
+
 }

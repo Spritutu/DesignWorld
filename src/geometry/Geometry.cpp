@@ -8,7 +8,7 @@ $HISTORY$*/
 
 
 Geometry::Geometry(void):
-    m_eGeomType(DW_GEOM), 
+    m_eGeomType(GEOM), 
     m_uiID((DWID)this)
 {
 }

@@ -95,16 +95,20 @@ public:
     //Modify entities
     void DESIGNWORLDAPI ModifyEntity(SPoint point);
 
+    //command
+    void DESIGNWORLDAPI SetGeometryCommand(eGeometryCommand eGeometryCommand);
+    eGeometryCommand DESIGNWORLDAPI GetGeometryCommand();
+
 private:
     std::vector<Line *> m_vecLines;
     std::vector<Point *> m_vecPoints;
     unsigned int m_uiCurrentID;
 
 public:
-    bool m_bLine;
+    eGeometryCommand m_eGeometryCommand;
     unsigned int m_iCurrentLineID;
 };
 
 
 // Factory function that creates instances of the object.
-extern "C" DESIGNWORLDAPI ObjectManager* GetDWObjectManager();
+extern "C" ObjectManager* GetDWObjectManager();

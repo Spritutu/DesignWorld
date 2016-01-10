@@ -79,7 +79,7 @@ BOOL CDWMFCApplicationApp::InitInstance()
 	// Register the application's document templates.  Document templates
 	//  serve as the connection between documents, frame windows and views
 	CMultiDocTemplate* pDocTemplate;
-	pDocTemplate = new CMultiDocTemplate(IDR_DWMFCApplicatioTYPE,
+	pDocTemplate = new CMultiDocTemplate(IDR_MAINFRAME,
 		RUNTIME_CLASS(CDWMFCApplicationDoc),
 		RUNTIME_CLASS(CChildFrame), // custom MDI child frame
 		RUNTIME_CLASS(CDWMFCApplicationView));

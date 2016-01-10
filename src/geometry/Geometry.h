@@ -9,9 +9,12 @@ typedef unsigned int DWID;
 
 enum eGeometry
 {
-    DW_GEOM = 0,
-    DW_POINT,
-    DW_LINE
+    GEOM = 0,
+    GEOM_POINT,
+    GEOM_LINE,
+    GEOM_CIRCLE,
+    GEOM_SPLINE,
+    GEOM_SURFACE,
 };
 
 

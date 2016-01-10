@@ -25,7 +25,7 @@ class GLManager
 
 public:
 
-    ObjectManager * GetObjectManager();
+    DESIGNWORLDAPI ObjectManager * GetObjectManager();
 
     //OpenGL operations
     void DESIGNWORLDAPI setWinWidth(int iWinWidth);

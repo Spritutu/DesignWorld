@@ -10,7 +10,7 @@ $HISTORY$*/
 
 ObjectManager::ObjectManager(void)
 {
-    m_bLine = false;
+    m_eGeometryCommand = CMD_IDLE;
     m_iCurrentLineID = 0;
 
     m_uiCurrentID = 0;
@@ -21,15 +21,24 @@ ObjectManager::~ObjectManager(void)
 {
 }
 
+void ObjectManager::SetGeometryCommand(eGeometryCommand eGeometryCommand)
+{
+    m_eGeometryCommand = eGeometryCommand;
+}
+
+eGeometryCommand ObjectManager::GetGeometryCommand()
+{
+    return m_eGeometryCommand;
+}
 Geometry * ObjectManager::GetGeometry(eGeometry type, int i)
 {
     Geometry *pEntity = NULL;
 
     switch (type)
     {
-    case DW_POINT:
+    case GEOM_POINT:
         pEntity = (Geometry *) m_vecPoints[i];
-    case DW_LINE:
+    case GEOM_LINE:
         pEntity = (Geometry *) m_vecLines[i];
     default:
         break;
@@ -67,9 +76,9 @@ int ObjectManager::GetGeometryCount(eGeometry type)
 {
     switch (type)
     {
-    case DW_POINT:
+    case GEOM_POINT:
         return ( int )m_vecPoints.size();
-    case DW_LINE:
+    case GEOM_LINE:
         return ( int )m_vecLines.size();
     default:
         break;
@@ -79,13 +88,13 @@ int ObjectManager::GetGeometryCount(eGeometry type)
 
 void ObjectManager::DeleteGeomtry(eGeometry type)
 {
-    if( type == DW_POINT)
+    if( type == GEOM_POINT)
     {
         for(int i = 0; i < (int)m_vecPoints.size(); i++)
             delete m_vecPoints[i];
         m_vecPoints.clear();
     }
-    else if(type == DW_LINE)
+    else if(type == GEOM_LINE)
     {
         for(int i = 0; i < (int)m_vecLines.size(); i++)
             delete m_vecLines[i];
@@ -158,7 +167,15 @@ void ObjectManager::DeletePointCounts()
 //Line Implementation
 Line *ObjectManager::GetLine(int i)
 {
-    return (Line *) m_vecLines[i];
+
+    Line *pLine = NULL;
+    
+    if (m_vecLines.size() > 0)
+    {
+        pLine = m_vecLines[i];
+    }
+
+    return pLine;
 }
 
 Line *ObjectManager::GetLineFromID(int ID)
@@ -222,9 +239,10 @@ void ObjectManager::DeleteLineCounts()
 ////			
 void ObjectManager::ModifyEntity(SPoint point){
 
-    if (m_bLine){
-        Line *pLine = GetLine(m_iCurrentLineID);
-        pLine->ModifyLine(pLine->GetStartPoint(), Point(point));
+    if (m_eGeometryCommand == CMD_LINE){
+        Line *pLine = GetLineFromID(m_iCurrentLineID);
+        if (pLine != NULL)
+            pLine->ModifyLine(pLine->GetStartPoint(), Point(point));
     }
 }
 //{
@@ -600,7 +618,7 @@ bool CGLSampleDoc::ValidateFemBeamID(int ID)
 }
 */
 
-DESIGNWORLDAPI ObjectManager * GetDWObjectManager()
+ObjectManager * GetDWObjectManager()
 {
     ObjectManager *pObj = new ObjectManager;
 

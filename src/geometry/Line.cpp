@@ -9,28 +9,28 @@ $HISTORY$*/
 //Class Constructors
 
 Line::Line(void):
-    Geometry(DW_LINE),
+    Geometry(GEOM_LINE),
     m_ptStart(),
     m_ptEnd()
 {
 }
 
 Line::Line(Point ptStart, Point ptEnd):
-    Geometry(DW_LINE),
+    Geometry(GEOM_LINE),
     m_ptStart(ptStart),
     m_ptEnd(ptEnd)
 {
 }
 
 Line::Line(Point ptOrigin, Vector vDirection, double dParam):
-    Geometry(DW_LINE),
+    Geometry(GEOM_LINE),
     m_ptStart(ptOrigin),
     m_ptEnd(ptOrigin + vDirection*dParam)
 {
 }
 
 Line::Line(const Line &Obj):
-    Geometry(DW_LINE),
+    Geometry(GEOM_LINE),
     m_ptStart(Obj.m_ptStart),
     m_ptEnd(Obj.m_ptEnd)
 {

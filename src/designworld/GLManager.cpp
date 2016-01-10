@@ -589,7 +589,7 @@ void GLManager::dw_LButtonDown(unsigned int uiFlags, SPoint point)
     m_currentPoint = point;
     m_Startpoint = point;
 
-    if (m_pObjectManager->IsLineCommandActive())
+    if (m_pObjectManager->GetGeometryCommand() == CMD_LINE)
     {
         Point ptStart = m_Startpoint;
         Point ptEnd = point;
@@ -605,9 +605,9 @@ void GLManager::dw_LButtonUp(unsigned int uiFlas, SPoint point)
 
     this->SetCurrentViewOperation(Idle);
 
-    if (m_pObjectManager->IsLineCommandActive())
+    if (m_pObjectManager->GetGeometryCommand() == CMD_LINE)
     {
-        m_pObjectManager->ModifyLine(point);
+        m_pObjectManager->ModifyEntity(point);
     }
     //g_streamOut.close();
 }
