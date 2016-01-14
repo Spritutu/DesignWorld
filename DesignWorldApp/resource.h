@@ -87,7 +87,6 @@
 #define IDB_BITMAP1                     310
 #define IDR_TOOLBAR_VIEWOPERATION       312
 #define IDR_VIEWOPERATION               312
-#define IDB_BITMAP2                     314
 #define IDR_TOOLBAR1                    315
 #define IDR_VEIWOPERATION               500
 #define ID_VIEW_PAN                     501

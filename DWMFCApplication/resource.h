@@ -6,7 +6,6 @@
 #define IDR_MAINFRAME                   128
 #define IDR_DWMFCApplicatioTYPE         130
 #define ID_WINDOW_MANAGER               131
-#define IDB_BITMAP2                     312
 #define IDR_VEIWOPERATION               314
 #define ID_VIEW_PAN                     315
 #define ID_VIEW_FIT                     316

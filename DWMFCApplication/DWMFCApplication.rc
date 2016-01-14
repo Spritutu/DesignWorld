@@ -378,8 +378,6 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_INDIA
 // Bitmap
 //
 
-IDB_BITMAP2             BITMAP                  "E:\\workdir\\DesignWorld\\DWMFCApplication\\res\\ViewOperation.bmp"
-
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
 //
