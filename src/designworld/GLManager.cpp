@@ -10,6 +10,7 @@ $HISTORY$*/
 
 GLManager::GLManager(void)
 {
+    m_eGeometryCommand = CMD_IDLE;
     m_dScaleFactor = 1.0;
     m_dSphereRad = 1.0;
 
@@ -35,6 +36,16 @@ void GLManager::setWinWidth(int iWinWidth)
 void GLManager::setWinHeight(int iWinHeight)
 {
     m_iWinHeight = iWinHeight;
+}
+
+void GLManager::SetGeometryCommand(eGeometryCommand eGeometryCommand)
+{
+    m_eGeometryCommand = eGeometryCommand;
+}
+
+eGeometryCommand GLManager::GetGeometryCommand()
+{
+    return m_eGeometryCommand;
 }
 
 //Draw Oeprtion
@@ -589,7 +600,7 @@ void GLManager::dw_LButtonDown(unsigned int uiFlags, SPoint point)
     m_currentPoint = point;
     m_Startpoint = point;
 
-    if (m_pObjectManager->GetGeometryCommand() == CMD_LINE)
+    if (GetGeometryCommand() == CMD_LINE)
     {
         Point ptStart = m_Startpoint;
         Point ptEnd = point;
@@ -605,9 +616,20 @@ void GLManager::dw_LButtonUp(unsigned int uiFlas, SPoint point)
 
     this->SetCurrentViewOperation(Idle);
 
-    if (m_pObjectManager->GetGeometryCommand() == CMD_LINE)
-    {
-        m_pObjectManager->ModifyEntity(point);
-    }
+    ModifyEntity(point);
     //g_streamOut.close();
+}
+
+////-----------------------------------------------------------------------------
+//// FUNC:	ModifyEntity
+//// ACTION:	Modify Selected the proximity entity.
+////			
+void GLManager::ModifyEntity(SPoint point){
+
+    if (m_eGeometryCommand == CMD_LINE){
+        unsigned int uiCurrentID = m_pObjectManager->GetCurrentObjectID();
+        Line *pLine = m_pObjectManager->GetLineFromID(uiCurrentID);
+        if (pLine != NULL)
+            pLine->ModifyLine(pLine->GetStartPoint(), Point(point));
+    }
 }

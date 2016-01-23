@@ -59,6 +59,13 @@ public:
     //Draw
     void DESIGNWORLDAPI DrawLine();
 
+    //command
+    void DESIGNWORLDAPI SetGeometryCommand(eGeometryCommand eGeometryCommand);
+    eGeometryCommand DESIGNWORLDAPI GetGeometryCommand();
+
+   //Modify entities
+    void DESIGNWORLDAPI ModifyEntity(SPoint point);
+
     GLManager(void);
     virtual ~GLManager(void);
 
@@ -80,6 +87,8 @@ private:
     GLdouble m_yRotate;
 
     ObjectManager * m_pObjectManager;
+
+    eGeometryCommand m_eGeometryCommand;
 };
 
 

@@ -10,9 +10,6 @@ $HISTORY$*/
 
 ObjectManager::ObjectManager(void)
 {
-    m_eGeometryCommand = CMD_IDLE;
-    m_iCurrentLineID = 0;
-
     m_uiCurrentID = 0;
 }
 
@@ -21,15 +18,6 @@ ObjectManager::~ObjectManager(void)
 {
 }
 
-void ObjectManager::SetGeometryCommand(eGeometryCommand eGeometryCommand)
-{
-    m_eGeometryCommand = eGeometryCommand;
-}
-
-eGeometryCommand ObjectManager::GetGeometryCommand()
-{
-    return m_eGeometryCommand;
-}
 Geometry * ObjectManager::GetGeometry(eGeometry type, int i)
 {
     Geometry *pEntity = NULL;
@@ -213,7 +201,7 @@ Line *ObjectManager::AddLine(Point ptFrom, Point ptTo)
 
     m_vecLines.push_back(pLine);
 
-    m_iCurrentLineID = pLine->GetID();
+    m_uiCurrentID = pLine->GetID();
     //SetModifiedFlag();
     //UpdateAllViews( NULL );
 
@@ -233,18 +221,11 @@ void ObjectManager::DeleteLineCounts()
     }
 }
 
-////-----------------------------------------------------------------------------
-//// FUNC:	ModifyEntity
-//// ACTION:	Modify Selected the proximity entity.
-////			
-void ObjectManager::ModifyEntity(SPoint point){
-
-    if (m_eGeometryCommand == CMD_LINE){
-        Line *pLine = GetLineFromID(m_iCurrentLineID);
-        if (pLine != NULL)
-            pLine->ModifyLine(pLine->GetStartPoint(), Point(point));
-    }
+unsigned int ObjectManager::GetCurrentObjectID()
+{
+    return m_uiCurrentID;
 }
+
 //{
 //    if (m_iCurrentPointID && m_iPickEntityID)
 //    {
