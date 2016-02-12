@@ -91,22 +91,13 @@ public:
     int GetLineCount();
     Line *AddLine(Point ptFrom, Point ptTo);
     void DeleteLineCounts();
-    
-    //Modify entities
-    void DESIGNWORLDAPI ModifyEntity(SPoint point);
 
-    //command
-    void DESIGNWORLDAPI SetGeometryCommand(eGeometryCommand eGeometryCommand);
-    eGeometryCommand DESIGNWORLDAPI GetGeometryCommand();
+    unsigned int GetCurrentObjectID();
 
 private:
     std::vector<Line *> m_vecLines;
     std::vector<Point *> m_vecPoints;
     unsigned int m_uiCurrentID;
-
-public:
-    eGeometryCommand m_eGeometryCommand;
-    unsigned int m_iCurrentLineID;
 };
 
 

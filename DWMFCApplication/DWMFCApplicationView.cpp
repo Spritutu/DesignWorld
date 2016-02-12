@@ -32,6 +32,7 @@ BEGIN_MESSAGE_MAP(CDWMFCApplicationView, CView)
     ON_WM_LBUTTONDOWN()
     ON_WM_LBUTTONUP()
     ON_WM_MOUSEMOVE()
+    ON_WM_RBUTTONDOWN()
 END_MESSAGE_MAP()
 
 // CDWMFCApplicationView construction/destruction
@@ -246,7 +247,7 @@ void CDWMFCApplicationView::OnViewPan()
 
 void CDWMFCApplicationView::OnGeometryLine()
 {
-    m_pGLManager->GetObjectManager()->SetGeometryCommand(CMD_LINE);
+    m_pGLManager->SetGeometryCommand(CMD_LINE);
 }
 
 
@@ -297,7 +298,7 @@ void CDWMFCApplicationView::OnMouseMove(UINT nFlags, CPoint point)
             //m_pGLManager->ProximitySelect( pt );
             break;
         case Pick:
-            m_pGLManager->GetObjectManager()->ModifyEntity( pt );
+            m_pGLManager->ModifyEntity( pt );
         default:
             break;
         }
@@ -305,11 +306,22 @@ void CDWMFCApplicationView::OnMouseMove(UINT nFlags, CPoint point)
 
     m_currentPoint = point;
 
-    if (m_pGLManager->GetObjectManager()->GetGeometryCommand() == CMD_LINE)
+    if (m_pGLManager->GetGeometryCommand() == CMD_LINE)
     {
-        m_pGLManager->GetObjectManager()->ModifyEntity(pt);
+        m_pGLManager->ModifyEntity(pt);
 
         Invalidate(FALSE);
     }
 
+}
+
+
+void CDWMFCApplicationView::OnRButtonDown(UINT nFlags, CPoint point)
+{
+    Invalidate(FALSE);
+    
+    // come out of command
+    m_pGLManager->SetGeometryCommand(CMD_IDLE);
+
+    CView::OnRButtonDown(nFlags, point);
 }
