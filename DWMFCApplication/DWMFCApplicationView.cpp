@@ -279,6 +279,7 @@ void CDWMFCApplicationView::OnMouseMove(UINT nFlags, CPoint point)
     if (nFlags == MK_MBUTTON)
     {
         m_pGLManager->RotateView( pt );
+        Invalidate(FALSE);
     }
 
     if (nFlags)
@@ -304,12 +305,11 @@ void CDWMFCApplicationView::OnMouseMove(UINT nFlags, CPoint point)
         }
     }
 
-    m_currentPoint = point;
+    m_pGLManager->dw_setCurrentPoint(pt);
 
     if (m_pGLManager->GetGeometryCommand() == CMD_LINE)
     {
         m_pGLManager->ModifyEntity(pt);
-
         Invalidate(FALSE);
     }
 

@@ -50,6 +50,9 @@ public:
     SPoint DESIGNWORLDAPI dw_PixlestoPoint(int iX, int iY);
     void DESIGNWORLDAPI dw_LButtonDown(unsigned int uiFlags, SPoint point);
     void DESIGNWORLDAPI dw_LButtonUp(unsigned int uiFlags, SPoint point);
+    
+    void DESIGNWORLDAPI dw_setCurrentPoint(SPoint point);
+    SPoint DESIGNWORLDAPI dw_getCurrentPoint(SPoint point);
 
     void PickSquares(SPoint point);
     void ProximitySelect(SPoint point);

@@ -420,8 +420,8 @@ void GLManager::RotateView(SPoint point)
     glRotated(m_yRotate, 1.0, 0.0, 0.0);
 
     glMultMatrixd(m);
-    //Invalidate(FALSE);
 
+    //m_currentPoint = point;
 }
 
 //-----------------------------------------------------------------------------
@@ -632,4 +632,13 @@ void GLManager::ModifyEntity(SPoint point){
         if (pLine != NULL)
             pLine->ModifyLine(pLine->GetStartPoint(), Point(point));
     }
+}
+
+void GLManager::dw_setCurrentPoint(SPoint point)
+{
+    m_currentPoint = point;
+}
+SPoint GLManager::dw_getCurrentPoint(SPoint point)
+{
+    return m_currentPoint;
 }
