@@ -588,6 +588,25 @@ SPoint GLManager::dw_PixlestoPoint(int iX, int iY)
     
     return point;
 }
+
+SPoint GLManager::dw_PixlestoPoint(SPoint pt)
+{
+
+    GLint glViewPort[4];
+    glGetIntegerv(GL_VIEWPORT, glViewPort);
+    Point glpoint(pt.x, glViewPort[3] - pt.y);
+
+    double dModel[16] = { 0 };
+    double dProj[16] = { 0 };
+    VERIFY_GL(glGetDoublev(GL_MODELVIEW_MATRIX, dModel));
+    VERIFY_GL(glGetDoublev(GL_PROJECTION_MATRIX, dProj));
+
+    SPoint point;
+    gluUnProject(glpoint.X(), glpoint.Y(), .5, dModel, dProj, glViewPort, &(point.x), &(point.y), &(point.z));
+
+    return point;
+}
+
 void GLManager::dw_LButtonDown(unsigned int uiFlags, SPoint point)
 {
     if (this->CurrentViewOperation() != Pan)
@@ -602,8 +621,8 @@ void GLManager::dw_LButtonDown(unsigned int uiFlags, SPoint point)
 
     if (GetGeometryCommand() == CMD_LINE)
     {
-        Point ptStart = m_Startpoint;
-        Point ptEnd = point;
+        Point ptStart = dw_PixlestoPoint(m_Startpoint);
+        Point ptEnd = dw_PixlestoPoint(point);
 
         Line *pLine = m_pObjectManager->AddLine(ptStart, ptEnd);
     }
@@ -626,11 +645,13 @@ void GLManager::dw_LButtonUp(unsigned int uiFlas, SPoint point)
 ////			
 void GLManager::ModifyEntity(SPoint point){
 
+    SPoint pt = dw_PixlestoPoint(point.x, point.y);
+
     if (m_eGeometryCommand == CMD_LINE){
         unsigned int uiCurrentID = m_pObjectManager->GetCurrentObjectID();
         Line *pLine = m_pObjectManager->GetLineFromID(uiCurrentID);
         if (pLine != NULL)
-            pLine->ModifyLine(pLine->GetStartPoint(), Point(point));
+            pLine->ModifyLine(pLine->GetStartPoint(), Point(pt));
     }
 }
 

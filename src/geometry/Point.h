@@ -21,6 +21,14 @@ struct str_POINT {
         z = 0;
         h = 1;
     }
+
+    str_POINT(double X, double Y)
+    {
+        x = X;
+        y = Y;
+        z = 0;
+        h = 1;
+    }
 };
 
 typedef str_POINT SPoint;

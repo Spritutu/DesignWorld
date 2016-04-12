@@ -255,7 +255,7 @@ void CDWMFCApplicationView::OnLButtonDown(UINT nFlags, CPoint point)
 {
     Invalidate(FALSE);
 
-    m_pGLManager->dw_LButtonDown(nFlags, m_pGLManager->dw_PixlestoPoint(point.x, point.y));
+    m_pGLManager->dw_LButtonDown(nFlags, SPoint(point.x, point.y));
 
     CView::OnLButtonDown(nFlags, point);
 }
@@ -263,7 +263,7 @@ void CDWMFCApplicationView::OnLButtonDown(UINT nFlags, CPoint point)
 
 void CDWMFCApplicationView::OnLButtonUp(UINT nFlags, CPoint point)
 {
-    m_pGLManager->dw_LButtonUp(nFlags, m_pGLManager->dw_PixlestoPoint(point.x, point.y));
+    m_pGLManager->dw_LButtonUp(nFlags, SPoint(point.x, point.y));
 
     Invalidate(FALSE);
 
@@ -274,11 +274,12 @@ void CDWMFCApplicationView::OnMouseMove(UINT nFlags, CPoint point)
 {
     CView::OnMouseMove(nFlags, point);
 
-    SPoint pt = m_pGLManager->dw_PixlestoPoint(point.x, point.y);
+    //SPoint pt = m_pGLManager->dw_PixlestoPoint(point.x, point.y);
+    SPoint pixelPt(point.x, point.y);
 
     if (nFlags == MK_MBUTTON)
     {
-        m_pGLManager->RotateView( pt );
+        m_pGLManager->RotateView(pixelPt);
         Invalidate(FALSE);
     }
 
@@ -290,7 +291,7 @@ void CDWMFCApplicationView::OnMouseMove(UINT nFlags, CPoint point)
             //m_pGLManager->RotateView( pt );
             //	break;
         case Pan:
-            m_pGLManager->PanView( pt );
+            m_pGLManager->PanView(pixelPt);
             break;
         case Zoom:
             //m_pGLManager->ZoomView( pt );
@@ -299,17 +300,17 @@ void CDWMFCApplicationView::OnMouseMove(UINT nFlags, CPoint point)
             //m_pGLManager->ProximitySelect( pt );
             break;
         case Pick:
-            m_pGLManager->ModifyEntity( pt );
+            m_pGLManager->ModifyEntity(pixelPt);
         default:
             break;
         }
     }
 
-    m_pGLManager->dw_setCurrentPoint(pt);
+    m_pGLManager->dw_setCurrentPoint(pixelPt);
 
     if (m_pGLManager->GetGeometryCommand() == CMD_LINE)
     {
-        m_pGLManager->ModifyEntity(pt);
+        m_pGLManager->ModifyEntity(pixelPt);
         Invalidate(FALSE);
     }
 

@@ -48,6 +48,7 @@ public:
 
     //Mouse Operation
     SPoint DESIGNWORLDAPI dw_PixlestoPoint(int iX, int iY);
+    SPoint DESIGNWORLDAPI dw_PixlestoPoint(SPoint pt);
     void DESIGNWORLDAPI dw_LButtonDown(unsigned int uiFlags, SPoint point);
     void DESIGNWORLDAPI dw_LButtonUp(unsigned int uiFlags, SPoint point);
     
