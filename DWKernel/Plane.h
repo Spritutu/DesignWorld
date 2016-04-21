@@ -7,6 +7,12 @@ struct str_PLANE
 {
     SPoint m_point;
     Vector m_normal;
+
+    str_PLANE(SPoint point, Vector normal)
+    {
+        m_point = point;
+        m_normal = normal;
+    }
 };
 
 typedef str_PLANE SPlane;

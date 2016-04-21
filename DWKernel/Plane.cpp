@@ -20,7 +20,26 @@ Geometry(GEOM_PLANE)
     m_normal = normal;
 }
 
-
 Plane::~Plane()
 {
 }
+
+Plane &Plane::operator =(const Plane &plane)
+{
+    m_point = plane.m_point;
+    m_normal = plane.m_normal;
+    
+    return *this;
+}
+
+void Plane::ModifyPlane(Plane plane)
+{
+    *this = plane;
+}
+
+void Plane::ModifyPlane(Point point, Vector normal)
+{
+    m_point = point;
+    m_normal = normal;
+}
+
