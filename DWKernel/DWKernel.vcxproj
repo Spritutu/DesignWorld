@@ -76,6 +76,7 @@
     <ClInclude Include="..\src\geometry\Geometry.h" />
     <ClInclude Include="..\src\geometry\Line.h" />
     <ClInclude Include="..\src\geometry\Point.h" />
+    <ClInclude Include="Plane.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\ganitam\Ganitam.cpp" />
@@ -84,6 +85,7 @@
     <ClCompile Include="..\src\geometry\Geometry.cpp" />
     <ClCompile Include="..\src\geometry\Line.cpp" />
     <ClCompile Include="..\src\geometry\Point.cpp" />
+    <ClCompile Include="Plane.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

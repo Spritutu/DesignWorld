@@ -11,6 +11,7 @@ enum eGeometry
 {
     GEOM = 0,
     GEOM_POINT,
+    GEOM_PLANE,
     GEOM_LINE,
     GEOM_CIRCLE,
     GEOM_SPLINE,
