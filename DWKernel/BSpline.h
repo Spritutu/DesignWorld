@@ -4,22 +4,6 @@
 #include "Point.h"
 #include "Vector.h"
 
-#define THREEDIM 3
-
-enum eBSplineMethod
-{
-    BSPLINE_FAIR = 0,
-    BSPLINE_FIT,
-    BSPLINE_SWEEP
-};
-
-enum eBSplineFitMethod
-{
-    BSPLINE_FIT_UNIFORMSPACE = 0,
-    BSPLINE_FIT_CHORDLENGTH,
-    BSPLINE_FIT_CENTRIPETAL
-};
-
 class BSpline :
     public Geometry
 {

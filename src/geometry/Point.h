@@ -9,25 +9,37 @@ $HISTORY$*/
 #include "Vector.h"
 
 struct str_POINT {
-    double x;
-    double y;
-    double z;
-    double h;
+
+    double *m_Coord;
+
+    inline double (&x()){ return m_Coord[0]; }
+    inline double (&y()){ return m_Coord[1]; }
+    inline double (&z()){ return m_Coord[2]; }
+    inline double (&h()){ return m_Coord[3]; }
+
+
+    inline double &x(double x){ m_Coord[0] = x; }
+    inline double &y(double y){ m_Coord[1] = y; }
+    inline double &z(double z){ m_Coord[2] = z; }
+    inline double &h(double h){ m_Coord[3] = h; }
 
     str_POINT()
     {
-        x = 0;
-        y = 0;
-        z = 0;
-        h = 1;
+        m_Coord = new double[4];
+        for (int i = 0; i < THREED; i++)
+        {
+            m_Coord[i] = 0;
+        }
+        m_Coord[FOURD] = 1;
     }
 
     str_POINT(double X, double Y)
     {
-        x = X;
-        y = Y;
-        z = 0;
-        h = 1;
+        m_Coord = new double[4];
+        m_Coord[0] = X;
+        m_Coord[1] = Y;
+        m_Coord[2] = 0;
+        m_Coord[3] = 1;
     }
 };
 

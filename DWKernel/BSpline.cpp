@@ -56,14 +56,14 @@ void FindMinMax(double * const pdSourceArr, int iSize, double &dMaxValue, double
 }
 void bspline_i(int n/*iCtrlPt*/, int k/*iOrder*/, int nSpanPt, double *pdKontVec, SPoint *pdCtrlPt, SPoint *pdCurvePt, int &iCurvePt)
 {
-    Matrix mCtrPts(n, THREEDIM);
+    Matrix mCtrPts(n, THREED);
 
     for (int i = 0; i < n; i++)
     {
         mCtrPts( i, 0 ) = pdCtrlPt[i].x;
         mCtrPts( i, 1 ) = pdCtrlPt[i].y;
         mCtrPts( i, 2 ) = pdCtrlPt[i].z;
-        //for (int j = 0; j < THREEDIM; j++)
+        //for (int j = 0; j < THREED; j++)
         //    mCtrPts(i, j) = pdCtrlPt[i].m_Coord[j];
     }
 
@@ -112,7 +112,7 @@ void bspline_i(int n/*iCtrlPt*/, int k/*iOrder*/, int nSpanPt, double *pdKontVec
         pdCurvePt[iCurvePt].x = mPoint(0, 0);
         pdCurvePt[iCurvePt].y = mPoint(0, 1);
         pdCurvePt[iCurvePt].z = mPoint(0, 2);
-        //for (int j = 0; j < THREEDIM; j++)
+        //for (int j = 0; j < THREED; j++)
         //    pdCurvePt[iCurvePt].m_Coord[j] = mPoint(0, j);
         iCurvePt++;
     }
@@ -123,9 +123,9 @@ void bspline_i(int n/*iCtrlPt*/, int k/*iOrder*/, int nSpanPt, double *pdKontVec
 
 void BSpline_btParam(int n/*iCtrlPt*/, int k/*iOrder*/, int iSpanPt, double *pdParamRange, double *pdKontVec, SPoint *pgptCtrl, SPoint *pgptCurve, int &iCurvePt)
 {
-    Matrix mCtrPts(n, THREEDIM);
+    Matrix mCtrPts(n, THREED);
     for (int i = 0; i < n; i++)
-        for (int j = 0; j < THREEDIM; j++)
+        for (int j = 0; j < THREED; j++)
             mCtrPts(i, j) = pgptCtrl[i].m_Coord[j];
 
     double *pdBSplnBlends = new double[n];
@@ -150,7 +150,7 @@ void BSpline_btParam(int n/*iCtrlPt*/, int k/*iOrder*/, int iSpanPt, double *pdP
 
         Matrix mPoint = M*mCtrPts;
 
-        for (int j = 0; j < THREEDIM; j++)
+        for (int j = 0; j < THREED; j++)
             pgptCurve[iCurvePt].m_Coord[j] = mPoint(0, j);
 
         ////Output file
@@ -390,10 +390,10 @@ void GetBSplineKnotPoints(int iCtrlPt, int iOrder, double  *pdKnotVec, SPoint *p
 {
     double *pdBSplnBlends = new double[iCtrlPt];
 
-    Matrix mCtrPts(iCtrlPt, THREEDIM);
+    Matrix mCtrPts(iCtrlPt, THREED);
 
     for (int i = 0; i < iCtrlPt; i++)
-        for (int j = 0; j < THREEDIM; j++)
+        for (int j = 0; j < THREED; j++)
             mCtrPts(i, j) = pgptCtrlPt[i].m_Coord[j];
 
     for (int i = 0; i < (iCtrlPt + iOrder); i++)
@@ -415,7 +415,7 @@ void GetBSplineKnotPoints(int iCtrlPt, int iOrder, double  *pdKnotVec, SPoint *p
 
         Matrix mPoint = M*mCtrPts;
 
-        for (int j = 0; j < THREEDIM; j++)
+        for (int j = 0; j < THREED; j++)
             pgptKnotPt[i].m_Coord[j] = mPoint(0, j);
     }
 
@@ -426,9 +426,9 @@ void GetBSplineDataPoints(int iCtrlPt, int iOrder, double *pdParamRange, double 
 {
     double *pdBSplnBlends = new double[iCtrlPt];
 
-    Matrix mCtrPts(iCtrlPt, THREEDIM);
+    Matrix mCtrPts(iCtrlPt, THREED);
     for (int i = 0; i < iCtrlPt; i++)
-        for (int j = 0; j < THREEDIM; j++)
+        for (int j = 0; j < THREED; j++)
             mCtrPts(i, j) = pgptCtrlPt[i].m_Coord[j];
 
     double dFirst[3] = { 0 };
@@ -490,7 +490,7 @@ void GetBSplineDataPoints(int iCtrlPt, int iOrder, double *pdParamRange, double 
 
         Matrix mPoint = M*mCtrPts;
 
-        for (int j = 0; j < THREEDIM; j++)
+        for (int j = 0; j < THREED; j++)
             pgptDataPt[k].m_Coord[j] = mPoint(0, j);
     }
 }
@@ -553,9 +553,9 @@ int IsPeriodic(int iCtrlPt, int iOrder, double *pdKnotVec)
 //BSpline Fit using Chord length approximation technique.
 void BSplineFit(int nCtrlPt, int iOrder, double *pdParamRange, double *pdKnotVec, int nDataPt, eBSplineFitMethod methodBsplineFit, SPoint *pgptData, SPoint *pgptCtrl)
 {
-    Matrix mDataPts(nDataPt, THREEDIM);
+    Matrix mDataPts(nDataPt, THREED);
     for (int i = 0; i < nDataPt; i++)
-        for (int j = 0; j < THREEDIM; j++)
+        for (int j = 0; j < THREED; j++)
             mDataPts(i, j) = pgptData[i].m_Coord[j];
 
     double *pdBSplnBlends = new double[nCtrlPt];
@@ -652,7 +652,7 @@ void BSplineFit(int nCtrlPt, int iOrder, double *pdParamRange, double *pdKnotVec
     Matrix mPoint = MtM_i * Mt * mDataPts;
 
     for (int l = 0; l < nCtrlPt; l++)
-        for (int j = 0; j < THREEDIM; j++)
+        for (int j = 0; j < THREED; j++)
             pgptCtrl[l].m_Coord[j] = mPoint(l, j);
 
     if (pdBSplnBlends) delete[] pdBSplnBlends;
@@ -661,9 +661,9 @@ void BSplineFit(int nCtrlPt, int iOrder, double *pdParamRange, double *pdKnotVec
 void BSplineFitEndTangents(int nCtrlPt, int iOrder, double *pdParamRange, double *pdKontVec, int nDataPt, Vector *pFirstDerivatives, eBSplineFitMethod methodBsplineFit, SPoint *pgptData, SPoint *pgptCtrl)
 {
     int iDegree = iOrder - 1;
-    Matrix mDataPts(nDataPt, THREEDIM);
+    Matrix mDataPts(nDataPt, THREED);
     for (int i = 0; i < nDataPt; i++)
-        for (int j = 0; j < THREEDIM; j++)
+        for (int j = 0; j < THREED; j++)
             mDataPts(i, j) = pgptData[i].m_Coord[j];
 
     double *pdBSplnBlends = new double[nCtrlPt];
@@ -778,7 +778,7 @@ void BSplineFitEndTangents(int nCtrlPt, int iOrder, double *pdParamRange, double
     Matrix mPoint = MtM_i * Mt * mDataPts;
 
     for (int l = 0; l < nCtrlPt; l++)
-        for (int j = 0; j < THREEDIM; j++)
+        for (int j = 0; j < THREED; j++)
             pgptCtrl[l].m_Coord[j] = mPoint(l, j);
 
     if (pdBSplnBlends) delete[] pdBSplnBlends;
@@ -967,9 +967,9 @@ void BSplineSecondDervativeBlends(double t/*dParam*/, int n/*iCtrlPt*/, int k/*i
 
 void BSplineFirstDervativeAtParam(double dParam, int iCtrlPt, int iOrder, double *pdKontVec, SPoint *pgptCtrl, double *pdVector)
 {
-    Matrix mCtrPts(iCtrlPt, THREEDIM);
+    Matrix mCtrPts(iCtrlPt, THREED);
     for (int i = 0; i < iCtrlPt; i++)
-        for (int j = 0; j < THREEDIM; j++)
+        for (int j = 0; j < THREED; j++)
             mCtrPts(i, j) = pgptCtrl[i].m_Coord[j];
 
     double* pdDerivativeBlends = new double[iCtrlPt];
@@ -997,7 +997,7 @@ void BSplineFirstDervativeAtParam(double dParam, int iCtrlPt, int iOrder, double
 
     Matrix mPoint = M*mCtrPts;
 
-    for (int j = 0; j < THREEDIM; j++)
+    for (int j = 0; j < THREED; j++)
         pdVector[j] = mPoint(0, j);
 
     if (pdDerivativeBlends) delete[] pdDerivativeBlends;
@@ -1005,9 +1005,9 @@ void BSplineFirstDervativeAtParam(double dParam, int iCtrlPt, int iOrder, double
 
 void BSplineSecondDervativeAtParam(double dParam, int iCtrlPt, int iOrder, double *pdKontVec, SPoint *pgptCtrl, double *pdVector)
 {
-    Matrix mCtrPts(iCtrlPt, THREEDIM);
+    Matrix mCtrPts(iCtrlPt, THREED);
     for (int i = 0; i < iCtrlPt; i++)
-        for (int j = 0; j < THREEDIM; j++)
+        for (int j = 0; j < THREED; j++)
             mCtrPts(i, j) = pgptCtrl[i].m_Coord[j];
 
     double* pdDerivativeBlends = new double[iCtrlPt];
@@ -1035,7 +1035,7 @@ void BSplineSecondDervativeAtParam(double dParam, int iCtrlPt, int iOrder, doubl
 
     Matrix mPoint = M*mCtrPts;
 
-    for (int j = 0; j < THREEDIM; j++)
+    for (int j = 0; j < THREED; j++)
         pdVector[j] = mPoint(0, j);
 
     if (pdDerivativeBlends) delete[] pdDerivativeBlends;
