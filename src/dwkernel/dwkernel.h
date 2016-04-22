@@ -1,3 +1,4 @@
+#pragma once
 #include "Geometry.h"
 #include "Line.h"
 #include "Point.h"
