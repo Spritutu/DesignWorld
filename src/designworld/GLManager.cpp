@@ -583,8 +583,10 @@ SPoint GLManager::dw_PixlestoPoint(int iX, int iY)
     VERIFY_GL(glGetDoublev(GL_MODELVIEW_MATRIX, dModel));
     VERIFY_GL(glGetDoublev(GL_PROJECTION_MATRIX, dProj));
 
-    SPoint point;
-    gluUnProject(glpoint.X(), glpoint.Y(), .5, dModel, dProj, glViewPort, &(point.x), &(point.y), &(point.z));
+    double x, y, z;
+    gluUnProject(glpoint.X(), glpoint.Y(), .5, dModel, dProj, glViewPort, &x, &y, &z);
+
+    SPoint point(x, y, z);
     
     return point;
 }
@@ -601,8 +603,11 @@ SPoint GLManager::dw_PixlestoPoint(SPoint pt)
     VERIFY_GL(glGetDoublev(GL_MODELVIEW_MATRIX, dModel));
     VERIFY_GL(glGetDoublev(GL_PROJECTION_MATRIX, dProj));
 
-    SPoint point;
-    gluUnProject(glpoint.X(), glpoint.Y(), .5, dModel, dProj, glViewPort, &(point.x), &(point.y), &(point.z));
+
+    double x, y, z;
+    gluUnProject(glpoint.X(), glpoint.Y(), .5, dModel, dProj, glViewPort, &x, &y, &z);
+
+    SPoint point(x, y, z);
 
     return point;
 }
@@ -645,7 +650,7 @@ void GLManager::dw_LButtonUp(unsigned int uiFlas, SPoint point)
 ////			
 void GLManager::ModifyEntity(SPoint point){
 
-    SPoint pt = dw_PixlestoPoint(point.x, point.y);
+    SPoint pt = dw_PixlestoPoint((int)point.x, (int)point.y);
 
     if (m_eGeometryCommand == CMD_LINE){
         unsigned int uiCurrentID = m_pObjectManager->GetCurrentObjectID();

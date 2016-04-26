@@ -42,6 +42,50 @@ enum eGeometry
     GEOM_SURFACE,
 };
 
+template<class T,
+    class Object,
+    typename T(Object::*getter)(),
+    typename T(Object::*setter)(T const &)>
+struct Property{
+
+    void operator ()(Object *obj)
+    {
+        m_p = obj;
+    }
+    // function call syntax
+    T operator()() const
+    {
+        return (m_p->*getter)();
+    }
+    T operator()(T const & value)
+    {
+        return (m_p->*setter)(value);
+    }
+
+    //// getter/setter syntax
+    //T getter() const
+    //{
+    //    return (m_p->*getter)();
+    //}
+    //T setter(T const & value)
+    //{
+    //    return (m_p->*setter)(value);
+    //}
+
+    // access with '=' sign
+    operator T() const
+    {
+        return (m_p->*getter)();
+    }
+    T operator = (T const & value)
+    {
+        return (m_p->*setter)(value);
+    }
+
+private:
+    Object *m_p;
+};
+
 
 class Geometry
 {

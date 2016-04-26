@@ -12,19 +12,19 @@ enum eGeometryCommand
     CMD_SURFACE
 };
 
-enum eBSplineMethod
-{
-    BSPLINE_FAIR = 0,
-    BSPLINE_FIT,
-    BSPLINE_SWEEP
-};
-
-enum eBSplineFitMethod
-{
-    BSPLINE_FIT_UNIFORMSPACE = 0,
-    BSPLINE_FIT_CHORDLENGTH,
-    BSPLINE_FIT_CENTRIPETAL
-};
+//enum eBSplineMethod
+//{
+//    BSPLINE_FAIR = 0,
+//    BSPLINE_FIT,
+//    BSPLINE_SWEEP
+//};
+//
+//enum eBSplineFitMethod
+//{
+//    BSPLINE_FIT_UNIFORMSPACE = 0,
+//    BSPLINE_FIT_CHORDLENGTH,
+//    BSPLINE_FIT_CENTRIPETAL
+//};
 
 // Operation mode
 enum ParaViewOperation
