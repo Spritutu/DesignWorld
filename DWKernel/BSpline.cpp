@@ -125,8 +125,14 @@ void BSpline_btParam(int n/*iCtrlPt*/, int k/*iOrder*/, int iSpanPt, double *pdP
 {
     Matrix mCtrPts(n, THREED);
     for (int i = 0; i < n; i++)
-        for (int j = 0; j < THREED; j++)
-            mCtrPts(i, j) = pgptCtrl[i].m_Coord[j];
+    {
+        mCtrPts(i, 0) = pgptCtrl[i].x;
+        mCtrPts(i, 1) = pgptCtrl[i].y;
+        mCtrPts(i, 2) = pgptCtrl[i].z;
+
+        //for (int j = 0; j < THREED; j++)
+        //    mCtrPts(i, j) = pgptCtrl[i].m_Coord[j];
+    }
 
     double *pdBSplnBlends = new double[n];
     double d = (pdParamRange[1] - pdParamRange[0]) / (float)(iSpanPt - 1);
@@ -150,8 +156,12 @@ void BSpline_btParam(int n/*iCtrlPt*/, int k/*iOrder*/, int iSpanPt, double *pdP
 
         Matrix mPoint = M*mCtrPts;
 
-        for (int j = 0; j < THREED; j++)
-            pgptCurve[iCurvePt].m_Coord[j] = mPoint(0, j);
+        pgptCurve[iCurvePt].x = mPoint(0, 0);
+        pgptCurve[iCurvePt].y = mPoint(0, 1);
+        pgptCurve[iCurvePt].z = mPoint(0, 2);
+
+        //for (int j = 0; j < THREED; j++)
+        //    pgptCurve[iCurvePt].m_Coord[j] = mPoint(0, j);
 
         ////Output file
         //streamOut << pgptCurve[iCurvePt].m_Coord[0] << "\t" << pgptCurve[iCurvePt].m_Coord[1] <<  "\t" << pgptCurve[iCurvePt].m_Coord[2] << "\tat\t" << t << "\n";
@@ -393,8 +403,15 @@ void GetBSplineKnotPoints(int iCtrlPt, int iOrder, double  *pdKnotVec, SPoint *p
     Matrix mCtrPts(iCtrlPt, THREED);
 
     for (int i = 0; i < iCtrlPt; i++)
-        for (int j = 0; j < THREED; j++)
-            mCtrPts(i, j) = pgptCtrlPt[i].m_Coord[j];
+    {
+
+        mCtrPts(i, 0) = pgptCtrlPt[i].x;
+        mCtrPts(i, 1) = pgptCtrlPt[i].y;
+        mCtrPts(i, 2) = pgptCtrlPt[i].z;
+
+        //for (int j = 0; j < THREED; j++)
+        //    mCtrPts(i, j) = pgptCtrlPt[i].m_Coord[j];
+    }
 
     for (int i = 0; i < (iCtrlPt + iOrder); i++)
     {
@@ -415,8 +432,13 @@ void GetBSplineKnotPoints(int iCtrlPt, int iOrder, double  *pdKnotVec, SPoint *p
 
         Matrix mPoint = M*mCtrPts;
 
-        for (int j = 0; j < THREED; j++)
-            pgptKnotPt[i].m_Coord[j] = mPoint(0, j);
+        pgptKnotPt[i].x = mPoint(0, 0);
+        pgptKnotPt[i].y = mPoint(0, 1);
+        pgptKnotPt[i].z = mPoint(0, 2);
+
+
+        //for (int j = 0; j < THREED; j++)
+        //    pgptKnotPt[i].m_Coord[j] = mPoint(0, j);
     }
 
     if (pdBSplnBlends) delete[] pdBSplnBlends;
@@ -428,8 +450,15 @@ void GetBSplineDataPoints(int iCtrlPt, int iOrder, double *pdParamRange, double 
 
     Matrix mCtrPts(iCtrlPt, THREED);
     for (int i = 0; i < iCtrlPt; i++)
-        for (int j = 0; j < THREED; j++)
-            mCtrPts(i, j) = pgptCtrlPt[i].m_Coord[j];
+    {
+
+        mCtrPts(i, 0) = pgptCtrlPt[i].x;
+        mCtrPts(i, 1) = pgptCtrlPt[i].y;
+        mCtrPts(i, 2) = pgptCtrlPt[i].z;
+
+        //for (int j = 0; j < THREED; j++)
+        //    mCtrPts(i, j) = pgptCtrlPt[i].m_Coord[j];
+    }
 
     double dFirst[3] = { 0 };
     double dEnd[3] = { 0 };
@@ -489,6 +518,10 @@ void GetBSplineDataPoints(int iCtrlPt, int iOrder, double *pdParamRange, double 
             M(0, i) = pdBSplnBlends[i];
 
         Matrix mPoint = M*mCtrPts;
+
+        pgptDataPt[k].x = mPoint(0, 0);
+        pgptDataPt[k].y = mPoint(0, 1);
+        pgptDataPt[k].z = mPoint(0, 2);
 
         for (int j = 0; j < THREED; j++)
             pgptDataPt[k].m_Coord[j] = mPoint(0, j);

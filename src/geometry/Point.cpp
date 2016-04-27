@@ -13,47 +13,43 @@ Point::Point(void):
     Geometry(GEOM_POINT),
     m_iDimension(4)
 {
-    m_point.x = 0;
-    m_point.y = 0;
-    m_point.z = 0;
-    m_point.h = 0;
+    m_Coord = new double[m_iDimension];
+    for (int i = 0; i < m_iDimension; i++)
+    {
+        m_Coord[i] = 0;
+    }
 }
 
 Point::Point(const Point &point):
     Geometry(GEOM_POINT),
     m_iDimension(point.m_iDimension)
 {
-    m_point.x = point.m_point.x;
-    m_point.y = point.m_point.y;
-    m_point.z = point.m_point.z;
-    m_point.h = point.m_point.h;
+    m_Coord = new double[m_iDimension];
+    for (int i = 0; i < m_iDimension; i++)
+    {
+        m_Coord[i] = point.m_Coord[i];
+    }
 }
 
 Point::Point(SPoint point):
     Geometry(GEOM_POINT),
     m_iDimension(4)
 {
-    m_point.x = point.x;
-    m_point.y = point.y;
-    m_point.z = point.z;
-    m_point.h = point.h;
+    m_Coord = new double[m_iDimension];
+
+    m_Coord[0] = point.x;
+    m_Coord[1] = point.y;
+    m_Coord[2] = point.z;
+    m_Coord[3] = point.h;
 }
 Point::Point(int iDim, double dCoord[]):
     Geometry(GEOM_POINT),
     m_iDimension(iDim)
 {
-    m_point.x = dCoord[0];
-    m_point.y = dCoord[1];
-    m_point.z = 0;
-    m_point.h = 1;
-
-    if( iDim > 2)
+    m_Coord = new double[m_iDimension];
+    for (int i = 0; i < m_iDimension; i++)
     {
-        m_point.z = dCoord[2];
-        if( iDim == 4 )
-        {
-            m_point.h = dCoord[3];
-        }
+        m_Coord[i] = dCoord[i];
     }
 }
 
@@ -61,10 +57,12 @@ Point::Point(double x, double y, double z, double h):
     Geometry(GEOM_POINT),
     m_iDimension(4)
 {
-    m_point.x = x;
-    m_point.y = y;
-    m_point.z = z;
-    m_point.h = h;
+    m_Coord = new double[m_iDimension];
+
+    m_Coord[0] = x;
+    m_Coord[1] = y;
+    m_Coord[2] = z;
+    m_Coord[3] = h;
 }
 
 
@@ -76,26 +74,34 @@ void Point::ModifyPoint(const Point &point)
 void Point::ModifyPoint(double x, double y, double z, double h)
 {
     m_iDimension = 4;
+    
+    m_Coord = new double[m_iDimension];
 
-    m_point.x = x;
-    m_point.y = y;
-    m_point.z = z;
-    m_point.h = h;
+    m_Coord[0] = x;
+    m_Coord[1] = y;
+    m_Coord[2] = z;
+    m_Coord[3] = h;
 }
 
 void Point::ModifyPoint(int iDim, double dCoord[])
 {
-    m_iDimension = iDim;
-
-    m_point.x = dCoord[0];
-    m_point.y = dCoord[1];
-    if( iDim > 2)
+    if (m_iDimension != iDim)
     {
-        m_point.z = dCoord[2];
-        if( iDim == 4 )
+        m_iDimension = iDim;
+
+        if (m_Coord)
         {
-            m_point.h = dCoord[3];
+            delete[] m_Coord;
+            m_Coord = nullptr;
         }
+
+        m_Coord = new double[m_iDimension];
+    }
+
+
+    for (int i = 0; i < m_iDimension; i++)
+    {
+        m_Coord[i] = dCoord[i];
     }
 }
 
@@ -103,11 +109,24 @@ void Point::ModifyPoint(int iDim, double dCoord[])
 
 Point &Point::operator =(const Point &point)
 {
-    m_iDimension = point.m_iDimension;
-    m_point.x = point.m_point.x;
-    m_point.y = point.m_point.y;
-    m_point.z = point.m_point.z;
-    m_point.h = point.m_point.h;
+    if (m_iDimension != point.m_iDimension)
+    {
+        m_iDimension = point.m_iDimension;
+
+        if (m_Coord)
+        {
+            delete [] m_Coord;
+            m_Coord = nullptr;
+        }
+
+        m_Coord = new double[m_iDimension];
+    }
+
+    
+    for (int i = 0; i < m_iDimension; i++)
+    {
+        m_Coord[i] = point.m_Coord[i];
+    }
 
     return *this;
 }
@@ -116,10 +135,10 @@ Point Point::operator +(Point &point)
 {
     Point ptTemp;
 
-    ptTemp.m_point.x = m_point.x + point.m_point.x;
-    ptTemp.m_point.y = m_point.y + point.m_point.y;
-    ptTemp.m_point.z = m_point.z + point.m_point.z;
-    ptTemp.m_point.h = m_point.h + point.m_point.h;
+    for (int i = 0; i < m_iDimension; i++)
+    {
+        ptTemp.m_Coord[i] = m_Coord[i] + point.m_Coord[i];
+    }
 
     return ptTemp;
 }
@@ -128,9 +147,9 @@ Point Point::operator +(Vector &vec)
 {
     Point ptTemp;
 
-    ptTemp.m_point.x = m_point.x + vec.x;
-    ptTemp.m_point.y = m_point.y + vec.y;
-    ptTemp.m_point.z = m_point.z + vec.z;
+    ptTemp.m_Coord[0] = m_Coord[0] + vec.x;
+    ptTemp.m_Coord[1] = m_Coord[1] + vec.y;
+    ptTemp.m_Coord[2] = m_Coord[2] + vec.z;
     
     return ptTemp;
 }
@@ -138,19 +157,24 @@ Point Point::operator +(Vector &vec)
 
 Point::~Point(void)
 {
+    if (m_Coord)
+    {
+        delete[] m_Coord;
+        m_Coord = nullptr;
+    }
 }
 
 double Point::X()
 {
-    return m_point.x;
+    return m_Coord[0];
 }
 
 double Point::Y()
 {
-    return m_point.y;
+    return m_Coord[1];
 }
 
 double Point::Z()
 {
-    return m_point.z;
+    return m_Coord[2];
 }
