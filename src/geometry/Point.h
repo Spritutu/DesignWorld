@@ -12,6 +12,27 @@ struct str_POINT {
        
     double x, y, z, h;
 
+    double operator [](int i)
+    {
+        double value = 0;
+
+        switch (i)
+        {
+        case 0:
+            value = x;
+        case 1:
+            value = y;
+        case 2:
+            value = z;
+        case 3:
+            value = h;
+        default:
+            break;
+        }
+
+        return value;
+    }
+
     str_POINT()
     {    
         x = 0;

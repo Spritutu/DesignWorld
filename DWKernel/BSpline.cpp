@@ -64,7 +64,7 @@ void bspline_i(int n/*iCtrlPt*/, int k/*iOrder*/, int nSpanPt, double *pdKontVec
         mCtrPts( i, 1 ) = pdCtrlPt[i].y;
         mCtrPts( i, 2 ) = pdCtrlPt[i].z;
         //for (int j = 0; j < THREED; j++)
-        //    mCtrPts(i, j) = pdCtrlPt[i].m_Coord[j];
+        //    mCtrPts(i, j) = pdCtrlPt[i][j];
     }
 
     double *X = new double[n + k + 1];
@@ -113,7 +113,7 @@ void bspline_i(int n/*iCtrlPt*/, int k/*iOrder*/, int nSpanPt, double *pdKontVec
         pdCurvePt[iCurvePt].y = mPoint(0, 1);
         pdCurvePt[iCurvePt].z = mPoint(0, 2);
         //for (int j = 0; j < THREED; j++)
-        //    pdCurvePt[iCurvePt].m_Coord[j] = mPoint(0, j);
+        //    pdCurvePt[iCurvePt][j] = mPoint(0, j);
         iCurvePt++;
     }
 
@@ -131,7 +131,7 @@ void BSpline_btParam(int n/*iCtrlPt*/, int k/*iOrder*/, int iSpanPt, double *pdP
         mCtrPts(i, 2) = pgptCtrl[i].z;
 
         //for (int j = 0; j < THREED; j++)
-        //    mCtrPts(i, j) = pgptCtrl[i].m_Coord[j];
+        //    mCtrPts(i, j) = pgptCtrl[i][j];
     }
 
     double *pdBSplnBlends = new double[n];
@@ -161,10 +161,10 @@ void BSpline_btParam(int n/*iCtrlPt*/, int k/*iOrder*/, int iSpanPt, double *pdP
         pgptCurve[iCurvePt].z = mPoint(0, 2);
 
         //for (int j = 0; j < THREED; j++)
-        //    pgptCurve[iCurvePt].m_Coord[j] = mPoint(0, j);
+        //    pgptCurve[iCurvePt][j] = mPoint(0, j);
 
         ////Output file
-        //streamOut << pgptCurve[iCurvePt].m_Coord[0] << "\t" << pgptCurve[iCurvePt].m_Coord[1] <<  "\t" << pgptCurve[iCurvePt].m_Coord[2] << "\tat\t" << t << "\n";
+        //streamOut << pgptCurve[iCurvePt][0] << "\t" << pgptCurve[iCurvePt][1] <<  "\t" << pgptCurve[iCurvePt][2] << "\tat\t" << t << "\n";
 
         iCurvePt++;
     }
@@ -410,7 +410,7 @@ void GetBSplineKnotPoints(int iCtrlPt, int iOrder, double  *pdKnotVec, SPoint *p
         mCtrPts(i, 2) = pgptCtrlPt[i].z;
 
         //for (int j = 0; j < THREED; j++)
-        //    mCtrPts(i, j) = pgptCtrlPt[i].m_Coord[j];
+        //    mCtrPts(i, j) = pgptCtrlPt[i][j];
     }
 
     for (int i = 0; i < (iCtrlPt + iOrder); i++)
@@ -438,7 +438,7 @@ void GetBSplineKnotPoints(int iCtrlPt, int iOrder, double  *pdKnotVec, SPoint *p
 
 
         //for (int j = 0; j < THREED; j++)
-        //    pgptKnotPt[i].m_Coord[j] = mPoint(0, j);
+        //    pgptKnotPt[i][j] = mPoint(0, j);
     }
 
     if (pdBSplnBlends) delete[] pdBSplnBlends;
@@ -457,7 +457,7 @@ void GetBSplineDataPoints(int iCtrlPt, int iOrder, double *pdParamRange, double 
         mCtrPts(i, 2) = pgptCtrlPt[i].z;
 
         //for (int j = 0; j < THREED; j++)
-        //    mCtrPts(i, j) = pgptCtrlPt[i].m_Coord[j];
+        //    mCtrPts(i, j) = pgptCtrlPt[i][j];
     }
 
     double dFirst[3] = { 0 };
@@ -470,9 +470,9 @@ void GetBSplineDataPoints(int iCtrlPt, int iOrder, double *pdParamRange, double 
         if (k)
         {
             for (int i = 0; i < 3; i++)
-                dFirst[i] = pgptCtrlPt[k - 1].m_Coord[i];
+                dFirst[i] = pgptCtrlPt[k - 1][i];
             for (int i = 0; i < 3; i++)
-                dEnd[i] = pgptCtrlPt[k].m_Coord[i];
+                dEnd[i] = pgptCtrlPt[k][i];
 
             D[k] = DistanceBetweenPoints(dFirst, dEnd);
         }
@@ -524,7 +524,7 @@ void GetBSplineDataPoints(int iCtrlPt, int iOrder, double *pdParamRange, double 
         pgptDataPt[k].z = mPoint(0, 2);
 
         for (int j = 0; j < THREED; j++)
-            pgptDataPt[k].m_Coord[j] = mPoint(0, j);
+            pgptDataPt[k][j] = mPoint(0, j);
     }
 }
 
@@ -589,7 +589,7 @@ void BSplineFit(int nCtrlPt, int iOrder, double *pdParamRange, double *pdKnotVec
     Matrix mDataPts(nDataPt, THREED);
     for (int i = 0; i < nDataPt; i++)
         for (int j = 0; j < THREED; j++)
-            mDataPts(i, j) = pgptData[i].m_Coord[j];
+            mDataPts(i, j) = pgptData[i][j];
 
     double *pdBSplnBlends = new double[nCtrlPt];
     Matrix M(nDataPt, nCtrlPt);
@@ -605,9 +605,9 @@ void BSplineFit(int nCtrlPt, int iOrder, double *pdParamRange, double *pdKnotVec
         if (k)
         {
             for (int i = 0; i < 3; i++)
-                dFirst[i] = pgptData[k - 1].m_Coord[i];
+                dFirst[i] = pgptData[k - 1][i];
             for (int i = 0; i < 3; i++)
-                dEnd[i] = pgptData[k].m_Coord[i];
+                dEnd[i] = pgptData[k][i];
 
             D[k] = DistanceBetweenPoints(dFirst, dEnd);
         }
@@ -686,7 +686,7 @@ void BSplineFit(int nCtrlPt, int iOrder, double *pdParamRange, double *pdKnotVec
 
     for (int l = 0; l < nCtrlPt; l++)
         for (int j = 0; j < THREED; j++)
-            pgptCtrl[l].m_Coord[j] = mPoint(l, j);
+            pgptCtrl[l][j] = mPoint(l, j);
 
     if (pdBSplnBlends) delete[] pdBSplnBlends;
 }
@@ -697,7 +697,7 @@ void BSplineFitEndTangents(int nCtrlPt, int iOrder, double *pdParamRange, double
     Matrix mDataPts(nDataPt, THREED);
     for (int i = 0; i < nDataPt; i++)
         for (int j = 0; j < THREED; j++)
-            mDataPts(i, j) = pgptData[i].m_Coord[j];
+            mDataPts(i, j) = pgptData[i][j];
 
     double *pdBSplnBlends = new double[nCtrlPt];
     Matrix M(nDataPt, nCtrlPt);
@@ -713,9 +713,9 @@ void BSplineFitEndTangents(int nCtrlPt, int iOrder, double *pdParamRange, double
         if (k)
         {
             for (int i = 0; i < 3; i++)
-                dFirst[i] = pgptData[k - 1].m_Coord[i];
+                dFirst[i] = pgptData[k - 1][i];
             for (int i = 0; i < 3; i++)
-                dEnd[i] = pgptData[k].m_Coord[i];
+                dEnd[i] = pgptData[k][i];
 
             D[k] = DistanceBetweenPoints(dFirst, dEnd);
         }
@@ -812,7 +812,7 @@ void BSplineFitEndTangents(int nCtrlPt, int iOrder, double *pdParamRange, double
 
     for (int l = 0; l < nCtrlPt; l++)
         for (int j = 0; j < THREED; j++)
-            pgptCtrl[l].m_Coord[j] = mPoint(l, j);
+            pgptCtrl[l][j] = mPoint(l, j);
 
     if (pdBSplnBlends) delete[] pdBSplnBlends;
 }
@@ -1003,7 +1003,7 @@ void BSplineFirstDervativeAtParam(double dParam, int iCtrlPt, int iOrder, double
     Matrix mCtrPts(iCtrlPt, THREED);
     for (int i = 0; i < iCtrlPt; i++)
         for (int j = 0; j < THREED; j++)
-            mCtrPts(i, j) = pgptCtrl[i].m_Coord[j];
+            mCtrPts(i, j) = pgptCtrl[i][j];
 
     double* pdDerivativeBlends = new double[iCtrlPt];
     BSplineFirstDervativeBlends(dParam, iCtrlPt, iOrder, pdKontVec, pdDerivativeBlends);
@@ -1041,7 +1041,7 @@ void BSplineSecondDervativeAtParam(double dParam, int iCtrlPt, int iOrder, doubl
     Matrix mCtrPts(iCtrlPt, THREED);
     for (int i = 0; i < iCtrlPt; i++)
         for (int j = 0; j < THREED; j++)
-            mCtrPts(i, j) = pgptCtrl[i].m_Coord[j];
+            mCtrPts(i, j) = pgptCtrl[i][j];
 
     double* pdDerivativeBlends = new double[iCtrlPt];
     BSplineSecondDervativeBlends(dParam, iCtrlPt, iOrder, pdKontVec, pdDerivativeBlends);
