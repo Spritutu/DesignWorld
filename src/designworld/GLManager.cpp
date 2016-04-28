@@ -404,8 +404,8 @@ void GLManager::RotateView(SPoint point)
     double diffx, diffy;
     //diffx = (double) (TransformDevicePoint(point).x - TransformDevicePoint(m_currentPoint).x);
     //diffy = (double) (TransformDevicePoint(point).y - TransformDevicePoint(m_currentPoint).y);
-    diffx = (double)(point.x - m_currentPoint.x);
-    diffy = (double)(point.y - m_currentPoint.y);
+    diffx = (double)(point.x - m_currentPoint[0]);
+    diffy = (double)(point.y - m_currentPoint[1]);
 
     m_xRotate = diffx * ROTATE_SENSITIVITY;
     m_yRotate = diffy * ROTATE_SENSITIVITY;

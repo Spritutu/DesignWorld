@@ -60,11 +60,11 @@ void bspline_i(int n/*iCtrlPt*/, int k/*iOrder*/, int nSpanPt, double *pdKontVec
 
     for (int i = 0; i < n; i++)
     {
-        mCtrPts( i, 0 ) = pdCtrlPt[i].x;
-        mCtrPts( i, 1 ) = pdCtrlPt[i].y;
-        mCtrPts( i, 2 ) = pdCtrlPt[i].z;
-        //for (int j = 0; j < THREED; j++)
-        //    mCtrPts(i, j) = pdCtrlPt[i][j];
+        //mCtrPts( i, 0 ) = pdCtrlPt[i].x;
+        //mCtrPts( i, 1 ) = pdCtrlPt[i].y;
+        //mCtrPts( i, 2 ) = pdCtrlPt[i].z;
+        for (int j = 0; j < THREED; j++)
+            mCtrPts(i, j) = pdCtrlPt[i][j];
     }
 
     double *X = new double[n + k + 1];
@@ -109,11 +109,11 @@ void bspline_i(int n/*iCtrlPt*/, int k/*iOrder*/, int nSpanPt, double *pdKontVec
         for (int i = 0; i < n; i++)
             M(0, i) = N(i + 1, k/*-1*/);
         Matrix mPoint = M*mCtrPts;
-        pdCurvePt[iCurvePt].x = mPoint(0, 0);
-        pdCurvePt[iCurvePt].y = mPoint(0, 1);
-        pdCurvePt[iCurvePt].z = mPoint(0, 2);
-        //for (int j = 0; j < THREED; j++)
-        //    pdCurvePt[iCurvePt][j] = mPoint(0, j);
+        //pdCurvePt[iCurvePt].x = mPoint(0, 0);
+        //pdCurvePt[iCurvePt].y = mPoint(0, 1);
+        //pdCurvePt[iCurvePt].z = mPoint(0, 2);
+        for (int j = 0; j < THREED; j++)
+            pdCurvePt[iCurvePt][j] = mPoint(0, j);
         iCurvePt++;
     }
 
@@ -126,12 +126,12 @@ void BSpline_btParam(int n/*iCtrlPt*/, int k/*iOrder*/, int iSpanPt, double *pdP
     Matrix mCtrPts(n, THREED);
     for (int i = 0; i < n; i++)
     {
-        mCtrPts(i, 0) = pgptCtrl[i].x;
-        mCtrPts(i, 1) = pgptCtrl[i].y;
-        mCtrPts(i, 2) = pgptCtrl[i].z;
+        //mCtrPts(i, 0) = pgptCtrl[i].x;
+        //mCtrPts(i, 1) = pgptCtrl[i].y;
+        //mCtrPts(i, 2) = pgptCtrl[i].z;
 
-        //for (int j = 0; j < THREED; j++)
-        //    mCtrPts(i, j) = pgptCtrl[i][j];
+        for (int j = 0; j < THREED; j++)
+            mCtrPts(i, j) = pgptCtrl[i][j];
     }
 
     double *pdBSplnBlends = new double[n];
@@ -156,12 +156,12 @@ void BSpline_btParam(int n/*iCtrlPt*/, int k/*iOrder*/, int iSpanPt, double *pdP
 
         Matrix mPoint = M*mCtrPts;
 
-        pgptCurve[iCurvePt].x = mPoint(0, 0);
-        pgptCurve[iCurvePt].y = mPoint(0, 1);
-        pgptCurve[iCurvePt].z = mPoint(0, 2);
+        //pgptCurve[iCurvePt].x = mPoint(0, 0);
+        //pgptCurve[iCurvePt].y = mPoint(0, 1);
+        //pgptCurve[iCurvePt].z = mPoint(0, 2);
 
-        //for (int j = 0; j < THREED; j++)
-        //    pgptCurve[iCurvePt][j] = mPoint(0, j);
+        for (int j = 0; j < THREED; j++)
+            pgptCurve[iCurvePt][j] = mPoint(0, j);
 
         ////Output file
         //streamOut << pgptCurve[iCurvePt][0] << "\t" << pgptCurve[iCurvePt][1] <<  "\t" << pgptCurve[iCurvePt][2] << "\tat\t" << t << "\n";
