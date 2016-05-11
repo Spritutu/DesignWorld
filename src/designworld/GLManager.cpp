@@ -430,7 +430,7 @@ void GLManager::RotateView(SPoint point)
 
 void GLManager::PanView(SPoint point)
 {
-    // get the document, manipulating centre 
+    // get the document, manipulating center 
 
     double dFactor = PAN_SENSITIVITY * m_dSphereRad * m_dScaleFactor;
     double dPanX = (point.x - m_currentPoint.x) * dFactor;
@@ -453,10 +453,10 @@ void GLManager::PanView(SPoint point)
 
 //-----------------------------------------------------------------------------
 // FUNC:	FrontView
-// ACTION:	Moves the centre of the view using the difference between two points.
+// ACTION:	Moves the center of the view using the difference between two points.
 void GLManager::FrontView()
 {
-    double m[16];
+    double m[16] = { 0 };
 
     VERIFY_GL(glMatrixMode(GL_MODELVIEW));
     VERIFY_GL(glGetDoublev(GL_MODELVIEW_MATRIX, m));

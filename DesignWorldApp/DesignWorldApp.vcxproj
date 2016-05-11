@@ -55,6 +55,7 @@
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>..\src\DesignWorldApp;..\src\designworld; ..\src\dwkernel; ..\src\geometry; ..\src\ganitam</AdditionalIncludeDirectories>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -72,6 +73,9 @@
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\src\DesignWorldApp;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

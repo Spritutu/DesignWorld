@@ -404,13 +404,13 @@ void GetBSplineKnotPoints(int iCtrlPt, int iOrder, double  *pdKnotVec, SPoint *p
 
     for (int i = 0; i < iCtrlPt; i++)
     {
-
+/*
         mCtrPts(i, 0) = pgptCtrlPt[i].x;
         mCtrPts(i, 1) = pgptCtrlPt[i].y;
-        mCtrPts(i, 2) = pgptCtrlPt[i].z;
+        mCtrPts(i, 2) = pgptCtrlPt[i].z;*/
 
-        //for (int j = 0; j < THREED; j++)
-        //    mCtrPts(i, j) = pgptCtrlPt[i][j];
+        for (int j = 0; j < THREED; j++)
+            mCtrPts(i, j) = pgptCtrlPt[i][j];
     }
 
     for (int i = 0; i < (iCtrlPt + iOrder); i++)
@@ -431,14 +431,14 @@ void GetBSplineKnotPoints(int iCtrlPt, int iOrder, double  *pdKnotVec, SPoint *p
             M(0, l) = pdBSplnBlends[l];
 
         Matrix mPoint = M*mCtrPts;
-
+/*
         pgptKnotPt[i].x = mPoint(0, 0);
         pgptKnotPt[i].y = mPoint(0, 1);
-        pgptKnotPt[i].z = mPoint(0, 2);
+        pgptKnotPt[i].z = mPoint(0, 2);*/
 
 
-        //for (int j = 0; j < THREED; j++)
-        //    pgptKnotPt[i][j] = mPoint(0, j);
+        for (int j = 0; j < THREED; j++)
+            pgptKnotPt[i][j] = mPoint(0, j);
     }
 
     if (pdBSplnBlends) delete[] pdBSplnBlends;

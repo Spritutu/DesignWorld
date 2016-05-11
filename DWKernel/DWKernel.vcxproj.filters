@@ -45,6 +45,9 @@
     <ClInclude Include="BSpline.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sketcher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\geometry\Geometry.cpp">
@@ -72,6 +75,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BSpline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sketcher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
