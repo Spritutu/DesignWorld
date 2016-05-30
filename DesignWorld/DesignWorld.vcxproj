@@ -55,7 +55,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\src\geometry; ..\src\ganitam; ..\src\dwkernel</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\src\geometry; ..\src\ganitam; ..\src\dwkernel; ..\DWKernel</AdditionalIncludeDirectories>
       <BrowseInformation>true</BrowseInformation>
       <PreprocessorDefinitions>_WINDLL;%(PreprocessorDefinitions);DESIGNWORLD_EXPORT</PreprocessorDefinitions>
     </ClCompile>

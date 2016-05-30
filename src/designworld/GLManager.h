@@ -46,6 +46,9 @@ public:
     void DESIGNWORLDAPI SetCurrentViewOperation(ParaViewOperation currentOperation);
     ParaViewOperation DESIGNWORLDAPI CurrentViewOperation();
 
+    //sketcher
+    void DESIGNWORLDAPI FixSketcherView(Plane plane);
+
     //Mouse Operation
     SPoint DESIGNWORLDAPI dw_PixlestoPoint(int iX, int iY);
     SPoint DESIGNWORLDAPI dw_PixlestoPoint(SPoint pt);

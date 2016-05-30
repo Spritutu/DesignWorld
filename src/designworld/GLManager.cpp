@@ -626,6 +626,10 @@ void GLManager::dw_LButtonDown(unsigned int uiFlags, SPoint point)
 
     if (GetGeometryCommand() == CMD_LINE)
     {
+        //fix a sketcher
+        //fix ffront view sketcher
+        FixSketcherView();
+
         Point ptStart = dw_PixlestoPoint(m_Startpoint);
         Point ptEnd = dw_PixlestoPoint(point);
 
@@ -667,4 +671,24 @@ void GLManager::dw_setCurrentPoint(SPoint point)
 SPoint GLManager::dw_getCurrentPoint(SPoint point)
 {
     return m_currentPoint;
+}
+
+
+void GLManager::FixSketcherView(Plane plane)
+{
+
+    double m[16] = { 0 };
+
+    double matInden[16] = { 1, 0, 0, 0,
+                            0, 1, 0, 0,
+                            0, 0, 1, 0,
+                            0, 0, 0, 1 };
+
+    //convert plane to matrix
+
+    VERIFY_GL(glMatrixMode(GL_MODELVIEW));
+    VERIFY_GL(glGetDoublev(GL_MODELVIEW_MATRIX, m));
+    //VERIFY_GL(glLoadIdentity()); // laoding indentity maatrix means front view
+    VERIFY_GL(glLoadMatrixd(matInden));
+    return;
 }
