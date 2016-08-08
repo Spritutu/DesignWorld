@@ -628,7 +628,7 @@ void GLManager::dw_LButtonDown(unsigned int uiFlags, SPoint point)
     {
         //fix a sketcher
         //fix ffront view sketcher
-        FixSketcherView();
+        //FixSketcherView();
 
         Point ptStart = dw_PixlestoPoint(m_Startpoint);
         Point ptEnd = dw_PixlestoPoint(point);

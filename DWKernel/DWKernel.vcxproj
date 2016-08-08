@@ -45,7 +45,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\src\geometry; ..\src\ganitam; ..src\dwkernel</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\src\geometry; ..\src\ganitam; ..\src\dwkernel;..\src\include</AdditionalIncludeDirectories>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
@@ -76,9 +76,9 @@
     <ClInclude Include="..\src\geometry\Geometry.h" />
     <ClInclude Include="..\src\geometry\Line.h" />
     <ClInclude Include="..\src\geometry\Point.h" />
+    <ClInclude Include="..\src\include\Plane.h" />
     <ClInclude Include="BSpline.h" />
     <ClInclude Include="Circle.h" />
-    <ClInclude Include="Plane.h" />
     <ClInclude Include="Sketcher.h" />
   </ItemGroup>
   <ItemGroup>

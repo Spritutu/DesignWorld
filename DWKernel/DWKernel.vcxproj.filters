@@ -36,9 +36,6 @@
     <ClInclude Include="..\src\geometry\Point.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Plane.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Circle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -46,6 +43,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sketcher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\include\Plane.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
