@@ -54,7 +54,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\src\DesignWorldApp;..\src\designworld; ..\src\dwkernel; ..\src\geometry; ..\src\ganitam</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\designworld; ..\dwkernel;</AdditionalIncludeDirectories>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
@@ -145,32 +145,31 @@
     <None Include="res\DesignWorldApp.rc2" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\DesignWorldApp\ChildFrm.cpp" />
-    <ClCompile Include="..\src\DesignWorldApp\ClassView.cpp" />
-    <ClCompile Include="..\src\DesignWorldApp\DesignWorldApp.cpp" />
-    <ClCompile Include="..\src\DesignWorldApp\DesignWorldAppDoc.cpp" />
-    <ClCompile Include="..\src\DesignWorldApp\DesignWorldAppView.cpp" />
-    <ClCompile Include="..\src\DesignWorldApp\FileView.cpp" />
-    <ClCompile Include="..\src\DesignWorldApp\MainFrm.cpp" />
-    <ClCompile Include="..\src\DesignWorldApp\OutputWnd.cpp" />
-    <ClCompile Include="..\src\DesignWorldApp\PropertiesWnd.cpp" />
-    <ClCompile Include="..\src\DesignWorldApp\stdafx.cpp" />
-    <ClCompile Include="..\src\DesignWorldApp\ViewTree.cpp" />
+    <ClCompile Include="ChildFrm.cpp" />
+    <ClCompile Include="ClassView.cpp" />
+    <ClCompile Include="DesignWorldApp.cpp" />
+    <ClCompile Include="DesignWorldAppDoc.cpp" />
+    <ClCompile Include="DesignWorldAppView.cpp" />
+    <ClCompile Include="FileView.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="OutputWnd.cpp" />
+    <ClCompile Include="PropertiesWnd.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="ViewTree.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\DesignWorldApp\ChildFrm.h" />
-    <ClInclude Include="..\src\DesignWorldApp\ClassView.h" />
-    <ClInclude Include="..\src\DesignWorldApp\DesignWorldApp.h" />
-    <ClInclude Include="..\src\DesignWorldApp\DesignWorldAppDoc.h" />
-    <ClInclude Include="..\src\DesignWorldApp\DesignWorldAppView.h" />
-    <ClInclude Include="..\src\DesignWorldApp\FileView.h" />
-    <ClInclude Include="..\src\DesignWorldApp\MainFrm.h" />
-    <ClInclude Include="..\src\DesignWorldApp\OutputWnd.h" />
-    <ClInclude Include="..\src\DesignWorldApp\PropertiesWnd.h" />
-    <ClInclude Include="..\src\DesignWorldApp\Resource.h" />
-    <ClInclude Include="..\src\DesignWorldApp\stdafx.h" />
-    <ClInclude Include="..\src\DesignWorldApp\targetver.h" />
-    <ClInclude Include="..\src\DesignWorldApp\ViewTree.h" />
+    <ClInclude Include="ChildFrm.h" />
+    <ClInclude Include="ClassView.h" />
+    <ClInclude Include="DesignWorldApp.h" />
+    <ClInclude Include="DesignWorldAppDoc.h" />
+    <ClInclude Include="DesignWorldAppView.h" />
+    <ClInclude Include="FileView.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="OutputWnd.h" />
+    <ClInclude Include="PropertiesWnd.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="ViewTree.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

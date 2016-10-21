@@ -54,7 +54,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\src\DesignWorldApp;..\src\designworld; ..\src\dwkernel; ..\src\geometry; ..\src\ganitam;..\src\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\DesignWorldApp;..\designworld; ..\dwkernel;</AdditionalIncludeDirectories>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>

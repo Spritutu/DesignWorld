@@ -11,15 +11,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\designworld\GLManager.cpp" />
-    <ClCompile Include="..\src\designworld\Object.cpp" />
-    <ClCompile Include="..\src\designworld\ObjectManager.cpp" />
+    <ClCompile Include="GLManager.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="Sketcher.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\designworld\DW_Defines.h" />
-    <ClInclude Include="..\src\designworld\GLManager.h" />
-    <ClInclude Include="..\src\designworld\Object.h" />
-    <ClInclude Include="..\src\designworld\ObjectManager.h" />
+    <ClInclude Include="DW_Defines.h" />
+    <ClInclude Include="GLManager.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="Sketcher.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D1823EFC-B916-48B3-9A51-CA615BC4728D}</ProjectGuid>
@@ -55,7 +57,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\src\geometry; ..\src\ganitam; ..\src\dwkernel; ..\src\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\dwkernel; </AdditionalIncludeDirectories>
       <BrowseInformation>true</BrowseInformation>
       <PreprocessorDefinitions>_WINDLL;%(PreprocessorDefinitions);DESIGNWORLD_EXPORT</PreprocessorDefinitions>
     </ClCompile>

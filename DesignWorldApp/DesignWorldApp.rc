@@ -239,8 +239,8 @@ BEGIN
                 MENUITEM "&Aqua Style",                 ID_VIEW_APPLOOK_OFF_2007_AQUA
             END
         END
-        MENUITEM "Fit",                         ID_VIEW_FIT32771
-        MENUITEM "Pan",                         ID_VIEW_PAN32772
+        MENUITEM "Fit",                         ID_VIEW_FIT
+        MENUITEM "Pan",                         ID_VIEW_PAN
         MENUITEM "Zoom",                        ID_VIEW_ZOOM
     END
     POPUP "&Window"

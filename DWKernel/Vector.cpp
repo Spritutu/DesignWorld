@@ -3,7 +3,7 @@
 #include <fstream>
 
 #include "Vector.h"
-#include "Ganitam.h"
+#include "SampleMath.h"
 
 using namespace std;
 
@@ -113,10 +113,10 @@ main()
 	v3.VectorRep();
 
 	CDC dc;
-	DW_Point DW_Point;
-	DW_Point.x = v3.getx();
-	DW_Point.y = v3.gety();
-	dc.LineTo(DW_Point);
+	POINT point;
+	point.x = v3.getx();
+	point.y = v3.gety();
+	dc.LineTo(point);
 
 }
 */

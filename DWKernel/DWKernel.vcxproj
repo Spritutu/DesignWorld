@@ -45,7 +45,8 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\src\geometry; ..\src\ganitam; ..\src\dwkernel;..\src\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
@@ -69,25 +70,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\dwkernel\dwkernel.h" />
-    <ClInclude Include="..\src\ganitam\Ganitam.h" />
-    <ClInclude Include="..\src\ganitam\Matrix.h" />
-    <ClInclude Include="..\src\ganitam\Vector.h" />
-    <ClInclude Include="..\src\geometry\Geometry.h" />
-    <ClInclude Include="..\src\geometry\Line.h" />
-    <ClInclude Include="..\src\geometry\Point.h" />
-    <ClInclude Include="..\src\include\Plane.h" />
+    <ClInclude Include="dwkernel.h" />
+    <ClInclude Include="Ganitam.h" />
+    <ClInclude Include="Matrix.h" />
+    <ClInclude Include="Vector.h" />
+    <ClInclude Include="Geometry.h" />
+    <ClInclude Include="Line.h" />
+    <ClInclude Include="Point.h" />
+    <ClInclude Include="Plane.h" />
     <ClInclude Include="BSpline.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="Sketcher.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\ganitam\Ganitam.cpp" />
-    <ClCompile Include="..\src\ganitam\Matrix.cpp" />
-    <ClCompile Include="..\src\ganitam\Vector.cpp" />
-    <ClCompile Include="..\src\geometry\Geometry.cpp" />
-    <ClCompile Include="..\src\geometry\Line.cpp" />
-    <ClCompile Include="..\src\geometry\Point.cpp" />
+    <ClCompile Include="Ganitam.cpp" />
+    <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="Vector.cpp" />
+    <ClCompile Include="Line.cpp" />
+    <ClCompile Include="Geometry.cpp" />
+    <ClCompile Include="Point.cpp" />
     <ClCompile Include="BSpline.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Plane.cpp" />

@@ -52,3 +52,5 @@ ipch
 
 # backup files
 *.bak
+/.cov/analysisConfigurations.config
+/.cov/coverity.config

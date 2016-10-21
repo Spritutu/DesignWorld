@@ -114,78 +114,78 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\DesignWorldApp\ChildFrm.cpp">
+    <ClCompile Include="ChildFrm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\DesignWorldApp\ClassView.cpp">
+    <ClCompile Include="ClassView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\DesignWorldApp\DesignWorldApp.cpp">
+    <ClCompile Include="DesignWorldApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\DesignWorldApp\DesignWorldAppDoc.cpp">
+    <ClCompile Include="DesignWorldAppDoc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\DesignWorldApp\DesignWorldAppView.cpp">
+    <ClCompile Include="DesignWorldAppView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\DesignWorldApp\FileView.cpp">
+    <ClCompile Include="FileView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\DesignWorldApp\MainFrm.cpp">
+    <ClCompile Include="MainFrm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\DesignWorldApp\OutputWnd.cpp">
+    <ClCompile Include="OutputWnd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\DesignWorldApp\PropertiesWnd.cpp">
+    <ClCompile Include="PropertiesWnd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\DesignWorldApp\stdafx.cpp">
+    <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\DesignWorldApp\ViewTree.cpp">
+    <ClCompile Include="ViewTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\DesignWorldApp\ChildFrm.h">
+    <ClInclude Include="ChildFrm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\DesignWorldApp\ClassView.h">
+    <ClInclude Include="ClassView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\DesignWorldApp\DesignWorldApp.h">
+    <ClInclude Include="DesignWorldApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\DesignWorldApp\DesignWorldAppDoc.h">
+    <ClInclude Include="DesignWorldAppDoc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\DesignWorldApp\DesignWorldAppView.h">
+    <ClInclude Include="DesignWorldAppView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\DesignWorldApp\FileView.h">
+    <ClInclude Include="FileView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\DesignWorldApp\MainFrm.h">
+    <ClInclude Include="MainFrm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\DesignWorldApp\OutputWnd.h">
+    <ClInclude Include="OutputWnd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\DesignWorldApp\PropertiesWnd.h">
+    <ClInclude Include="PropertiesWnd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\DesignWorldApp\Resource.h">
+    <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\DesignWorldApp\stdafx.h">
+    <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\DesignWorldApp\targetver.h">
+    <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\DesignWorldApp\ViewTree.h">
+    <ClInclude Include="ViewTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
