@@ -3,7 +3,7 @@
 #include <fstream>
 
 #include "Vector.h"
-#include "SampleMath.h"
+#include "Ganitam.h"
 
 using namespace std;
 
