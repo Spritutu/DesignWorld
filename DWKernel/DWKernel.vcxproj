@@ -80,7 +80,6 @@
     <ClInclude Include="Plane.h" />
     <ClInclude Include="BSpline.h" />
     <ClInclude Include="Circle.h" />
-    <ClInclude Include="Sketcher.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ganitam.cpp" />
@@ -92,7 +91,6 @@
     <ClCompile Include="BSpline.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Plane.cpp" />
-    <ClCompile Include="Sketcher.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

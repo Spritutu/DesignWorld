@@ -21,31 +21,28 @@
     <ClInclude Include="BSpline.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sketcher.h">
+    <ClInclude Include="dwkernel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\dwkernel\dwkernel.h">
+    <ClInclude Include="Ganitam.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\ganitam\Ganitam.h">
+    <ClInclude Include="Matrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\ganitam\Matrix.h">
+    <ClInclude Include="Vector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\ganitam\Vector.h">
+    <ClInclude Include="Geometry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\geometry\Geometry.h">
+    <ClInclude Include="Line.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\geometry\Line.h">
+    <ClInclude Include="Point.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\geometry\Point.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\include\Plane.h">
+    <ClInclude Include="Plane.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -59,25 +56,22 @@
     <ClCompile Include="BSpline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sketcher.cpp">
+    <ClCompile Include="Ganitam.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ganitam\Ganitam.cpp">
+    <ClCompile Include="Matrix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ganitam\Matrix.cpp">
+    <ClCompile Include="Vector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ganitam\Vector.cpp">
+    <ClCompile Include="Line.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\geometry\Geometry.cpp">
+    <ClCompile Include="Geometry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\geometry\Line.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\geometry\Point.cpp">
+    <ClCompile Include="Point.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
